@@ -5,6 +5,8 @@ from views import views
 
 from PyQt6 import QtWidgets, QtCore, QtGui
 
+from PyQt6.QtGui import QColor
+
 import ajustes_ui
 import events
 from models.models import Coche, Cliente
@@ -28,7 +30,6 @@ class Main(QtWidgets.QMainWindow):
         # Texto barra de estado
 
         self.lblTiempo = QtWidgets.QLabel("")
-
         self.contador = QtCore.QTimer(self)
 
         self.contador.setInterval(1000)
@@ -66,6 +67,8 @@ class Main(QtWidgets.QMainWindow):
         self.ui.btnFechaAltaCli.clicked.connect(self.carga_fecha)
 
         self.ui.tabClientes.clicked.connect(self.carga_cliente_desde_tab)
+        self.ui.tabClientes.horizontalHeader().sortIndicatorChanged.connect(self.aplicar_colores_tabla)
+
         self.ui.btnModifCli.clicked.connect(self.modificar_cliente)
 
         header = self.ui.tabClientes.horizontalHeader()
@@ -78,6 +81,7 @@ class Main(QtWidgets.QMainWindow):
 
         self.ui.lblAvisoPago.setVisible(False)
 
+        # Estilos extra con CSS aplicados a esta ventana
         self._aplicar_estilos()
 
     def _actualizar_tiempo(self):
@@ -354,7 +358,7 @@ class Main(QtWidgets.QMainWindow):
 
             ultima_fila = self.ui.tabClientes.rowCount() - 1
 
-            for i in range(3):
+            for i in range(5):
 
                 self.ui.tabClientes.setItem(ultima_fila, i, QtWidgets.QTableWidgetItem(""))
 
@@ -362,9 +366,31 @@ class Main(QtWidgets.QMainWindow):
 
             self.ui.tabClientes.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
 
+            self.aplicar_colores_tabla()
+
         except Exception as error:
 
             print("Error al mostrar el listado de coches clientes", error)
+
+    def aplicar_colores_tabla(self):
+
+        try:
+
+            for i in range(0, self.ui.tabClientes.columnCount()):
+
+                for j in range(self.ui.tabClientes.rowCount()):
+
+                    if j % 2 == 0:
+
+                        self.ui.tabClientes.item(j, i).setBackground(QColor("#BCBAB8"))
+
+                    else:
+
+                        self.ui.tabClientes.item(j, i).setBackground(QColor("#F9F9F9"))
+
+        except Exception as error:
+
+            print("Error al aplicar estilo a la tabla")
 
     def mostrar_cliente(self, cliente: Cliente):
 

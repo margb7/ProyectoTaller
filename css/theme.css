@@ -175,3 +175,7 @@ QLabel, QTableWidget, QCheckBox, QRadioButton, QComboBox, QLineEdit, QMenu, QToo
     font-size: 14pt;
     font-family: "Roboto";
 }
+
+QTableWidget::item::selected {
+    background-color: #27adff;
+}
