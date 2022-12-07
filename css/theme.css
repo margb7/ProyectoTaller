@@ -1,0 +1,177 @@
+QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #636363;
+}
+
+QCheckBox:checked{
+    color: blue;
+}
+
+QRadioButton:checked, QRadioButton::indicator:checked, QCheckBox::indicator:checked {
+    color: blue;
+}
+
+QLineEdit {
+
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #636363;
+
+}
+
+QComboBox {
+
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #636363;
+
+}
+
+QTableView {
+
+    selection-background-color: ;
+    selection-color: white;
+    background-color: #FFFFFF;
+    color: #000000;
+
+}
+
+QTabWidget::pane {
+    border: 1px solid black;
+    background: white;
+}
+
+QTabWidget::tab-bar:top {
+    top: 1px;
+}
+
+QTabWidget::tab-bar:bottom {
+    bottom: 1px;
+}
+
+QTabWidget::tab-bar:left {
+    right: 1px;
+}
+
+QTabWidget::tab-bar:right {
+    left: 1px;
+}
+
+QTabBar::tab {
+    border: 1px solid black;
+    color: ;
+    font-size: 12pt;
+}
+
+QTabBar::tab:selected {
+    background: white;
+}
+
+QTabBar::tab:!selected {
+    background: silver;
+}
+
+QTabBar::tab:!selected:hover {
+    background: #999;
+}
+
+QTabBar::tab:top:!selected {
+    margin-top: 3px;
+}
+
+QTabBar::tab:bottom:!selected {
+    margin-bottom: 3px;
+}
+
+QTabBar::tab:top, QTabBar::tab:bottom {
+    min-width: 8ex;
+    margin-right: -1px;
+    padding: 5px 10px 5px 10px;
+}
+
+QTabBar::tab:top:selected {
+    border-bottom-color: none;
+}
+
+QTabBar::tab:bottom:selected {
+    border-top-color: none;
+}
+
+QTabBar::tab:top:last, QTabBar::tab:bottom:last,
+QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one {
+    margin-right: 0;
+}
+
+QTabBar::tab:left:!selected {
+    margin-right: 3px;
+}
+
+QTabBar::tab:right:!selected {
+    margin-left: 3px;
+}
+
+QTabBar::tab:left, QTabBar::tab:right {
+    min-height: 8ex;
+    margin-bottom: -1px;
+    padding: 10px 5px 10px 5px;
+}
+
+QTabBar::tab:left:selected {
+    border-left-color: none;
+}
+
+QTabBar::tab:right:selected {
+    border-right-color: none;
+}
+
+QTabBar::tab:left:last, QTabBar::tab:right:last,
+QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
+    margin-bottom: 0;
+}
+
+QGroupBox {
+    border: 1px solid #FF17365D;
+    margin-top: 27px;
+    border-radius: 0 0 15px 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 5px 8000px 5px 8000px;
+    background-color: #FF17365D;
+    color: white;
+    font-size: 45pt;
+    font-weight: bold;
+}
+
+* {
+    font-family: "Roboto";
+}
+
+QWidget {
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+#lblCampos {
+    font-family: "DejaVu Sans Light";
+    font-weight: 10;
+    font-size: 10pt;
+}
+
+QLabel, QTableWidget, QCheckBox, QRadioButton, QComboBox, QLineEdit, QMenu, QToolBar, QStatusBar, QPushButton {
+    font-weight: normal;
+    font-size: 12pt;
+    font-family: "Roboto";
+}
+
+#lblFechaCalendario, #lblSalir, #lblDatosExcel, #lblCombustible, #lblDatosVehiculo {
+    font-weight: bold;
+    font-size: 14pt;
+    font-family: "Roboto";
+}
