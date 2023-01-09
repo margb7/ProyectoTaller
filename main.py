@@ -1,3 +1,4 @@
+import os
 import sys
 
 import conexion
@@ -9,6 +10,7 @@ from PyQt6.QtGui import QColor
 
 import ajustes_ui
 import events
+from models.informe import Informe
 from models.models import Coche, Cliente, Servicio
 from ventMain import Ui_mainWindow
 
@@ -50,6 +52,8 @@ class Main(QtWidgets.QMainWindow):
 
         self.ui.actionExportar_Datos.triggered.connect(self.dlg_exportar_datos)
         self.ui.actionImportar_Datos.triggered.connect(self.importar_desde_excel)
+
+        self.ui.actionInformes_Clientes.triggered.connect(Informe.generar_informe_clientes)
 
         self.ui.txtDNI.editingFinished.connect(self.mostrar_dni_valido)
 
@@ -874,5 +878,5 @@ if __name__ == '__main__':
     with open(archivo_css, "r") as f:
         app.setStyleSheet(f.read())
 
-    window.show()
+    window.showMaximized()
     sys.exit(app.exec())

@@ -1295,10 +1295,10 @@
            <string>Gestión de servicios</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
              <item>
-              <widget class="QLabel" name="label_4">
+              <widget class="QLabel" name="label_3">
                <property name="minimumSize">
                 <size>
                  <width>150</width>
@@ -1312,7 +1312,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>Código</string>
+                <string>Precio unidad</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1320,29 +1320,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtCodigo">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>200</width>
-                 <height>0</height>
-                </size>
-               </property>
+              <widget class="QLineEdit" name="txtPrecioUnidad">
                <property name="maximumSize">
                 <size>
-                 <width>200</width>
+                 <width>400</width>
                  <height>16777215</height>
                 </size>
-               </property>
-               <property name="text">
-                <string>Auto-generado</string>
                </property>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_9">
+              <spacer name="horizontalSpacer_8">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1408,10 +1396,10 @@
              </item>
             </layout>
            </item>
-           <item row="2" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="label_4">
                <property name="minimumSize">
                 <size>
                  <width>150</width>
@@ -1425,7 +1413,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>Precio unidad</string>
+                <string>Código</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1433,17 +1421,29 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtPrecioUnidad">
+              <widget class="QLineEdit" name="txtCodigo">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
-                 <width>400</width>
+                 <width>200</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="text">
+                <string>Auto-generado</string>
                </property>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_8">
+              <spacer name="horizontalSpacer_9">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1460,7 +1460,7 @@
           </layout>
          </widget>
         </item>
-        <item row="0" column="1">
+        <item row="1" column="0">
          <widget class="QGroupBox" name="groupBox_4">
           <property name="minimumSize">
            <size>
@@ -1468,30 +1468,11 @@
             <height>0</height>
            </size>
           </property>
-          <property name="maximumSize">
-           <size>
-            <width>300</width>
-            <height>16777215</height>
-           </size>
-          </property>
           <property name="title">
            <string>Operaciones</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_10">
-           <item row="2" column="0">
-            <widget class="QPushButton" name="btnModificarServ">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Modificar</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
+           <item row="0" column="1">
             <widget class="QPushButton" name="btnGuardarServ">
              <property name="minimumSize">
               <size>
@@ -1499,12 +1480,18 @@
                <height>40</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Guardar</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="0" column="2">
             <widget class="QPushButton" name="btnEliminarServ">
              <property name="minimumSize">
               <size>
@@ -1512,12 +1499,37 @@
                <height>40</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Eliminar</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="btnModificarServ">
+             <property name="minimumSize">
+              <size>
+               <width>75</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Modificar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
             <widget class="QPushButton" name="btnLimpiarServ">
              <property name="minimumSize">
               <size>
@@ -1525,50 +1537,19 @@
                <height>40</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Limpiar</string>
              </property>
             </widget>
            </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="QGroupBox" name="groupBox_5">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Búsqueda por nombre</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_12">
-           <item row="1" column="0">
+           <item row="1" column="0" colspan="3">
             <layout class="QHBoxLayout" name="horizontalLayout_10">
-             <item>
-              <widget class="QLabel" name="label_5">
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>75</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>75</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Nombre de concepto:</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QLineEdit" name="txtBuscarConcepto">
                <property name="maximumSize">
@@ -1653,7 +1634,7 @@
      <x>0</x>
      <y>0</y>
      <width>1709</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -1672,8 +1653,21 @@
     <addaction name="actionExportar_Datos"/>
     <addaction name="actionImportar_Datos"/>
    </widget>
+   <widget class="QMenu" name="menuInformes">
+    <property name="title">
+     <string>Informes</string>
+    </property>
+    <addaction name="actionInformes_Clientes"/>
+   </widget>
+   <widget class="QMenu" name="menuAcerca_de">
+    <property name="title">
+     <string>Acerca de</string>
+    </property>
+   </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuHerramientas"/>
+   <addaction name="menuInformes"/>
+   <addaction name="menuAcerca_de"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -1741,6 +1735,11 @@
   <action name="actionImportar_Datos">
    <property name="text">
     <string>Importar Datos</string>
+   </property>
+  </action>
+  <action name="actionInformes_Clientes">
+   <property name="text">
+    <string>Informes Clientes</string>
    </property>
   </action>
  </widget>
