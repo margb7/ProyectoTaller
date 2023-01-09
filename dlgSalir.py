@@ -61,13 +61,3 @@ class Ui_Dialog(object):
         self.btnSalir.setText(_translate("Dialog", "Salir"))
         self.pushButton_2.setText(_translate("Dialog", "No"))
         self.lblSalir.setText(_translate("Dialog", "¿ Desea salir ?"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec())

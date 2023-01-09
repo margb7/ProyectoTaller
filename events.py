@@ -13,7 +13,7 @@ import ajustes_ui
 import views
 
 from datetime import datetime
-from models.models import Coche, Cliente
+from models.models import Coche, Cliente, Servicio
 from PyQt6 import QtWidgets, QtSql
 
 
@@ -51,13 +51,13 @@ class Eventos:
             print("Error al lanzar el mensaje de aviso", error)
 
     @staticmethod
-    def exportar_datos(exportar_clientes: bool, exportar_coches: bool):
+    def exportar_datos(exportar_clientes: bool, exportar_coches: bool, exportar_productos: bool):
 
         try:
 
             dlg_abrir = views.views.FileDialogAbrir()
 
-            if exportar_clientes or exportar_coches:
+            if exportar_clientes or exportar_coches or exportar_productos:
 
                 fecha = datetime.today()
                 nombre = fecha.strftime('%Y_%m_%d_%H-%M-%S_datos.xls')
@@ -113,6 +113,29 @@ class Eventos:
 
                                 for i in range(5):
                                     sheet2.write(fila, i, str(query.value(i)))
+
+                                fila += 1
+
+                    if exportar_productos:
+
+                        sheet3 = wb.add_sheet("Productos")
+
+                        sheet3.write(0, 0, "Código")
+                        sheet3.write(0, 1, "Concepto")
+                        sheet3.write(0, 2, "Precio_unidad")
+
+                        query = QtSql.QSqlQuery()
+                        query.prepare("select * from productos order by codigo")
+
+                        if query.exec():
+
+                            fila = 1
+
+                            while query.next():
+
+                                for i in range(3):
+
+                                    sheet3.write(fila, i, str(query.value(i)))
 
                                 fila += 1
 
@@ -203,11 +226,49 @@ class Eventos:
 
                         Eventos.importar_hoja_coches(hoja)
 
+                    elif hoja.name == "Productos":
+
+                        Eventos.importar_hoja_clientes(hoja)
+
                 Eventos.lanzar_aviso("Se han importado los datos")
 
         except Exception as error:
 
             print("Error al importar datos", error)
+
+    @staticmethod
+    def importar_hoja_productos(hoja: xlrd.sheet.Sheet) -> bool:
+
+        out = False
+
+        try:
+
+            for i in range(hoja.nrows):
+
+                if i == 0:
+
+                    # Fila de título de los campos
+
+                    pass
+
+                else:
+
+                    prod_imp = []
+                    obj_prod: Servicio
+
+                    for j in range(hoja.ncols):
+
+                        prod_imp.append(str(hoja.cell_value(i, j)))
+
+                    obj_prod = Servicio(prod_imp[1], prod_imp[2], prod_imp[0])
+
+                    out = conexion.Conexion.guardar_servicio(obj_prod)
+
+        except Exception as error:
+
+            print("Error al importar la hoja de productos", error)
+
+        return out
 
     @staticmethod
     def importar_hoja_clientes(hoja: xlrd.sheet.Sheet) -> bool:

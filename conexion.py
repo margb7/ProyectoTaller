@@ -2,7 +2,7 @@ from PyQt6 import QtSql
 from typing import List
 
 import events
-from models.models import Cliente, Coche
+from models.models import Cliente, Coche, Servicio
 from ventMain import *
 
 
@@ -25,6 +25,119 @@ class Conexion:
         except Exception as error:
 
             print("Error al conectar con la base de datos", error)
+
+    @staticmethod
+    def buscar_servicios_concepto(concepto: str):
+
+        servicios = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            concepto = "%" + concepto + "%"
+
+            query.prepare("select concepto, precio_unidad, codigo from productos where concepto like :concepto")
+            query.bindValue(":concepto", concepto)
+
+            if query.exec():
+
+                while query.next():
+
+                    servicios.append(Servicio(query.value(0), query.value(1), query.value(2)))
+
+        except Exception as error:
+
+            print("Error al cargar servicios por nombre", error)
+
+        return servicios
+
+    @staticmethod
+    def modifica_servicio(servicio: Servicio) -> bool:
+
+        out = False
+
+        try:
+
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE productos set concepto = :concepto, precio_unidad = :precio_unidad where codigo = :codigo")
+
+            query.bindValue(":codigo", servicio.codigo)
+            query.bindValue(":concepto", servicio.concepto)
+            query.bindValue(":precio_unidad", servicio.precio_unidad)
+
+            out = query.exec()
+
+        except Exception as error:
+
+            print("Error al modificar un servicio", error)
+
+        return out
+
+    @staticmethod
+    def borraServicioPorCodigo(codigo: str) -> bool:
+
+        out = False
+
+        try:
+
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE FROM productos WHERE codigo = :codigo")
+            query.bindValue(":codigo", codigo)
+
+            out = query.exec()
+
+        except Exception as error:
+
+            print("Error al borrar un servicio", error)
+
+        return out
+
+    @staticmethod
+    def guardar_servicio(servicio: Servicio) -> bool:
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("insert into productos (concepto,precio_unidad) values (:concepto, :precio_unidad)")
+
+            query.bindValue(":concepto", servicio.concepto)
+            query.bindValue(":precio_unidad", servicio.precio_unidad)
+
+            return query.exec()
+
+        except Exception as error:
+
+            print("Error al guardar un servicio en la BBDD ", error)
+            return False
+
+    @staticmethod
+    def cargar_lista_servicios():
+
+        servicios = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("select concepto, precio_unidad, codigo from productos")
+
+            if query.exec():
+
+                while query.next():
+
+                    servicios.append(Servicio(query.value(0), query.value(1), query.value(2)))
+
+                    print(query.value(0))
+                    print(query.value(1))
+                    print(query.value(2))
+
+        except Exception as error:
+
+            print("Error al cargar la lista de servicios", error)
+
+        return servicios
 
     @staticmethod
     def cargar_municipios(provincia: str) -> List[str]:
@@ -91,7 +204,6 @@ class Conexion:
         try:
 
             print(new_car.dnicli)
-            print("gjogegnmwerhgo")
 
             if new_cli.dni != "":
 
@@ -282,8 +394,6 @@ class Conexion:
             query.prepare(
                 "UPDATE CLIENTES SET NOMBRE = :nombre, ALTA = :alta, DIRECCION = :direccion, PROVINCIA = :provincia, "
                 "MUNICIPIO = :municipio, PAGO = :pago WHERE DNI = :dni")
-
-            print(cliente.pago)
 
             query.bindValue(":nombre", cliente.nombre)
             query.bindValue(":alta", cliente.alta)

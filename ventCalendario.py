@@ -49,13 +49,3 @@ class Ui_ventCalendar(object):
         _translate = QtCore.QCoreApplication.translate
         ventCalendar.setWindowTitle(_translate("ventCalendar", "Fecha Alta"))
         self.lblFechaCalendario.setText(_translate("ventCalendar", "Selecciona la fecha de alta"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    ventCalendar = QtWidgets.QMainWindow()
-    ui = Ui_ventCalendar()
-    ui.setupUi(ventCalendar)
-    ventCalendar.show()
-    sys.exit(app.exec())

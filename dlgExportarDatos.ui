@@ -32,6 +32,18 @@
    <property name="rightMargin">
     <number>150</number>
    </property>
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="chkClientes">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Clientes</string>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -86,7 +98,7 @@
      </item>
     </layout>
    </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QCheckBox" name="chkCoches">
      <property name="font">
       <font>
@@ -98,7 +110,7 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
+   <item row="10" column="0">
     <widget class="QPushButton" name="btnExportar">
      <property name="maximumSize">
       <size>
@@ -111,19 +123,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QCheckBox" name="chkClientes">
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clientes</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
+   <item row="7" column="0">
     <widget class="QLabel" name="label_3">
      <property name="lineWidth">
       <number>1</number>
@@ -133,6 +133,13 @@
      </property>
      <property name="wordWrap">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="chkProductos">
+     <property name="text">
+      <string>Productos</string>
      </property>
     </widget>
    </item>
