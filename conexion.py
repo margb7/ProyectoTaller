@@ -384,6 +384,28 @@ class Conexion:
         return out
 
     @staticmethod
+    def cargar_lista_clientes() -> List[Cliente]:
+
+        out = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+            query.prepare("select dni, nombre, alta, direccion, provincia, municipio, pago from clientes")
+
+            if query.exec():
+
+                while query.next():
+                    out.append(Cliente(query.value(0), query.value(1), query.value(2), query.value(3), query.value(4),
+                                       query.value(5), query.value(6)))
+
+        except Exception as error:
+
+            print("Error al cargar los clientes de la base de datos", error)
+
+        return out
+
+    @staticmethod
     def update_cli(cliente: Cliente) -> bool:
 
         out = False

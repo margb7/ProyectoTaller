@@ -38,7 +38,7 @@ class Ui_Dialog(object):
         self.label_2.setMinimumSize(QtCore.QSize(75, 75))
         self.label_2.setMaximumSize(QtCore.QSize(75, 75))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("img/icono_alerta.png"))
+        self.label_2.setPixmap(QtGui.QPixmap("../img/icono_alerta.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_2.addWidget(self.label_2)

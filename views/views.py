@@ -5,8 +5,8 @@ from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtCore import QDate
 
 from ventCalendario import Ui_ventCalendar
-from dlgSalir import Ui_Dialog
-from dlgExportarDatos import Ui_dlgExportarDatos
+from dialogs.dlgSalir import Ui_Dialog
+from dialogs.dlgExportarDatos import Ui_dlgExportarDatos
 
 
 class FileDialogAbrir(QtWidgets.QFileDialog):

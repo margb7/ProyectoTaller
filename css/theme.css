@@ -167,12 +167,14 @@ QWidget {
 QLabel, QTableWidget, QCheckBox, QRadioButton, QComboBox, QLineEdit, QMenu, QToolBar, QStatusBar, QPushButton {
     font-weight: normal;
     font-size: 12pt;
+    color: black;
     font-family: "Roboto";
 }
 
 #lblFechaCalendario, #lblSalir, #lblDatosExcel, #lblCombustible, #lblDatosVehiculo {
     font-weight: bold;
     font-size: 14pt;
+    color: black;
     font-family: "Roboto";
 }
 

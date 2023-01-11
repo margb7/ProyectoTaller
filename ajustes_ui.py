@@ -45,6 +45,16 @@ def reset_campos_obligatorios(ui: Ui_mainWindow):
     ui.lblAvisoPago.setVisible(False)
 
 
+def fuente_a_pixeles(texto: str, size: int) -> float:
+
+    return len(texto) * size / 12 * 16
+
+
+def calcular_inicio_texto_centrado(centro: float, texto: str, size: int) -> float:
+
+    return centro - (fuente_a_pixeles(texto, size) / 2)
+
+
 def resize_tab_bar(ui: Ui_mainWindow):
     try:
 

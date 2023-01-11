@@ -39,7 +39,7 @@ class Ui_dlgExportarDatos(object):
         self.label_2.setMinimumSize(QtCore.QSize(50, 50))
         self.label_2.setMaximumSize(QtCore.QSize(50, 50))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("img/icono_pregunta.png"))
+        self.label_2.setPixmap(QtGui.QPixmap("../img/icono_pregunta.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_2.setObjectName("label_2")

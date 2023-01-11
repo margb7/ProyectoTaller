@@ -22,12 +22,8 @@ def main():
 
                 else:
 
-                    comando = "python3 -m PyQt6.uic.pyuic"
-
-                    subprocess.run(["python3", "-m", "PyQt6.uic.pyuic", "-x", os.path.basename(f)  ,"-o", os.path.basename(f).replace(".ui", "") + ".py"],
+                    subprocess.run(["python3", "-m", "PyQt6.uic.pyuic", "-x", os.path.basename(f), "-o", os.path.basename(f).replace(".ui", "") + ".py"],
                     cwd=os.path.abspath(os.getcwd()))
-
-                
 
 
 if __name__ == '__main__':
