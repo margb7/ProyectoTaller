@@ -22,15 +22,6 @@ QLineEdit {
 
 }
 
-QComboBox {
-
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 5px;
-    border-color: #636363;
-
-}
-
 QTableView {
 
     selection-background-color: ;
@@ -134,12 +125,13 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
 }
 
 QGroupBox {
-    border: 1px solid #FF17365D;
+    border: 1px solid gray;
     margin-top: 27px;
-    border-radius: 0 0 15px 15px;
 }
 
 QGroupBox::title {
+    border: 1px solid gray;
+    border-radius: 9px;
     subcontrol-origin: margin;
     subcontrol-position: top center;
     padding: 5px 8000px 5px 8000px;
@@ -171,7 +163,7 @@ QLabel, QTableWidget, QCheckBox, QRadioButton, QComboBox, QLineEdit, QMenu, QToo
     font-family: "Roboto";
 }
 
-#lblFechaCalendario, #lblSalir, #lblDatosExcel, #lblCombustible, #lblDatosVehiculo {
+#lblFechaCalendario, #lblSalir, #lblDatosExcel, #lblCombustible, #lblDatosVehiculo, #lblBusquedaNombre, #lblServiciosDisponibles {
     font-weight: bold;
     font-size: 14pt;
     color: black;

@@ -1,8 +1,8 @@
-import os
 import sys
 
 import conexion
 from views import views
+from facturacion import TabFacturacion
 
 from PyQt6 import QtWidgets, QtCore, QtGui
 
@@ -87,7 +87,7 @@ class Main(QtWidgets.QMainWindow):
         header.setSectionResizeMode(QtWidgets.QHeaderView.sectionResizeMode(header, 0).Stretch)
 
         servicios_header = self.ui.tabClientes.horizontalHeader()
-        servicios_header.setSectionResizeMode(QtWidgets.QHeaderView.sectionResizeMode(header, 0).Stretch)
+        servicios_header.setSectionResizeMode(QtWidgets.QHeaderView.sectionResizeMode(servicios_header, 0).Stretch)
 
         self.ui.btnGuardarServ.clicked.connect(self.guardar_servicio)
         self.ui.btnLimpiarServ.clicked.connect(self.limpiar_ui_servicio)
@@ -97,6 +97,8 @@ class Main(QtWidgets.QMainWindow):
         self.ui.btnRecargarTabla.clicked.connect(self.cargar_tabla_servicios)
 
         self.ui.tabServicio.clicked.connect(self.cargar_servicio_desde_tabla)
+
+        self.tabFacturacion = TabFacturacion(self.ui)
 
         self.cargar_tabla_servicios()
 
@@ -114,9 +116,9 @@ class Main(QtWidgets.QMainWindow):
 
             self.lblTiempo.setText(texto)
 
-        except Exception:
+        except Exception as error:
 
-            pass
+            print("Error al actualizar el tiempo", error)
 
     def _aplicar_estilos(self):
 
@@ -662,7 +664,7 @@ class Main(QtWidgets.QMainWindow):
 
         except Exception as error:
 
-            print("Error al aplicar estilo a la tabla")
+            print("Error al aplicar estilo a la tabla", error)
 
     def mostrar_cliente(self, cliente: Cliente):
 

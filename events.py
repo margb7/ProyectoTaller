@@ -89,6 +89,7 @@ class Eventos:
                             while query.next():
 
                                 for i in range(7):
+
                                     sheet1.write(fila, i, str(query.value(i)))
 
                                 fila += 1

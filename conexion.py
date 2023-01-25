@@ -460,6 +460,28 @@ class Conexion:
         return out
 
     @staticmethod
+    def cargar_lista_conceptos() -> List[str]:
+
+        out = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+            query.prepare("select concepto from productos order by concepto")
+
+            if query.exec():
+
+                while query.next():
+
+                    out.append(str(query.value(0)))
+
+        except Exception as error:
+
+            print("Error al cargar la lista de ventas", error)
+
+        return out
+
+    @staticmethod
     def modifica_cli(cliente: Cliente, coche: Coche) -> bool:
 
         out = False
@@ -485,3 +507,24 @@ class Conexion:
             print("Error al modificar el cliente y el coche", error)
 
         return out
+
+    @staticmethod
+    def obtener_precio_servicio_por_concepto(concepto: str) -> str:
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("select precio_unidad from productos where concepto = :concepto")
+
+            query.bindValue(":concepto", concepto)
+
+            if query.exec() and query.next():
+
+                return query.value(0)
+
+        except Exception as error:
+
+            print("Error al obtener el precio de servicio por concepto", error)
+
+        return "-1"

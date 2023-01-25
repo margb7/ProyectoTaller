@@ -65,6 +65,7 @@ def resize_tab_bar(ui: Ui_mainWindow):
             header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
 
             if i == 0 or i == 1:
+
                 header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
 
     except Exception as error:

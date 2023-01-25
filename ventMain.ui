@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1709</width>
+    <width>1216</width>
     <height>1233</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>img/icono_ventana.png</normaloff>img/icono_ventana.png</iconset>
+    <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_ventana.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_ventana.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="0">
@@ -70,7 +70,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -84,7 +84,7 @@
       <widget class="QWidget" name="tab">
        <attribute name="icon">
         <iconset>
-         <normaloff>img/icono_usuario.png</normaloff>img/icono_usuario.png</iconset>
+         <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_usuario.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_usuario.png</iconset>
        </attribute>
        <attribute name="title">
         <string>Clientes</string>
@@ -454,7 +454,7 @@
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>img/icono_calendario.png</normaloff>img/icono_calendario.png</iconset>
+                 <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_calendario.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_calendario.png</iconset>
                </property>
               </widget>
              </item>
@@ -1128,7 +1128,7 @@
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>img/icono_buscar.png</normaloff>img/icono_buscar.png</iconset>
+               <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_buscar.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_buscar.png</iconset>
              </property>
             </widget>
            </item>
@@ -1145,7 +1145,7 @@
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>img/icono_limpiar.png</normaloff>img/icono_limpiar.png</iconset>
+               <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_limpiar.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_limpiar.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -1243,22 +1243,25 @@
       <widget class="QWidget" name="tab_2">
        <attribute name="icon">
         <iconset>
-         <normaloff>img/icono_servicio.png</normaloff>img/icono_servicio.png</iconset>
+         <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_servicio.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_servicio.png</iconset>
        </attribute>
        <attribute name="title">
         <string>Servicios</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
-        <item row="2" column="0" colspan="2">
-         <widget class="QGroupBox" name="groupBox_3">
+        <item row="3" column="0" rowspan="3" colspan="5">
+         <widget class="QGroupBox" name="groupBox_4">
           <property name="title">
-           <string>Servicios</string>
+           <string>Servicios disponibles</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_11">
+          <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0">
             <widget class="QTableWidget" name="tabServicio">
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
              </property>
              <attribute name="horizontalHeaderCascadingSectionResizes">
               <bool>false</bool>
@@ -1283,11 +1286,11 @@
           </layout>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="1" column="0" rowspan="2">
          <widget class="QGroupBox" name="groupBox">
           <property name="minimumSize">
            <size>
-            <width>500</width>
+            <width>0</width>
             <height>0</height>
            </size>
           </property>
@@ -1295,19 +1298,126 @@
            <string>Gestión de servicios</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
            <item row="2" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="label">
                <property name="minimumSize">
                 <size>
-                 <width>150</width>
-                 <height>75</height>
+                 <width>125</width>
+                 <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>150</width>
+                 <width>125</width>
+                 <height>75</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Concepto</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtConceptoServicio">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="minimumSize">
+                <size>
+                 <width>125</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>125</width>
+                 <height>75</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Código</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtCodigo">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Auto-generado</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="minimumSize">
+                <size>
+                 <width>125</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>125</width>
                  <height>75</height>
                 </size>
                </property>
@@ -1315,7 +1425,7 @@
                 <string>Precio unidad</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                </property>
               </widget>
              </item>
@@ -1323,7 +1433,240 @@
               <widget class="QLineEdit" name="txtPrecioUnidad">
                <property name="maximumSize">
                 <size>
-                 <width>400</width>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Búsqueda</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
+           <property name="verticalSpacing">
+            <number>6</number>
+           </property>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="txtBuscarConcepto">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>600</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="btnBuscarConcepto">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Buscar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="btnRecargarTabla">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Recargar tabla</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>Opciones</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="2" column="0">
+            <widget class="QPushButton" name="btnGuardarServ">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Guardar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="btnModificarServ">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Modificar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QPushButton" name="btnEliminarServ">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Eliminar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="btnLimpiarServ">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Limpiar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="icon">
+        <iconset>
+         <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_facturacion.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_facturacion.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Facturación</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="1" column="0" colspan="4">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Servicios</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="1" column="3">
+            <widget class="QPushButton" name="btnSeleccionarCliente">
+             <property name="text">
+              <string>Seleccionar cliente</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="label_10">
+               <property name="minimumSize">
+                <size>
+                 <width>125</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Matrícula:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -1344,38 +1687,26 @@
              </item>
             </layout>
            </item>
-           <item row="3" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
-             </property>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="lblFactDni">
                <property name="minimumSize">
                 <size>
-                 <width>150</width>
-                 <height>75</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>75</height>
+                 <width>125</width>
+                 <height>0</height>
                 </size>
                </property>
                <property name="text">
-                <string>Concepto</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <string>DNI:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtConceptoServicio">
+              <widget class="QLineEdit" name="txtFactDni">
                <property name="maximumSize">
                 <size>
-                 <width>400</width>
+                 <width>150</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -1396,49 +1727,28 @@
              </item>
             </layout>
            </item>
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
-              <widget class="QLabel" name="label_4">
+              <widget class="QLabel" name="label_9">
                <property name="minimumSize">
                 <size>
-                 <width>150</width>
-                 <height>75</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>75</height>
+                 <width>125</width>
+                 <height>0</height>
                 </size>
                </property>
                <property name="text">
-                <string>Código</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <string>Número factura:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtCodigo">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>200</width>
-                 <height>0</height>
-                </size>
-               </property>
+              <widget class="QLineEdit" name="lineEdit_2">
                <property name="maximumSize">
                 <size>
-                 <width>200</width>
+                 <width>150</width>
                  <height>16777215</height>
                 </size>
-               </property>
-               <property name="text">
-                <string>Auto-generado</string>
                </property>
               </widget>
              </item>
@@ -1457,137 +1767,33 @@
              </item>
             </layout>
            </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="minimumSize">
-           <size>
-            <width>300</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Operaciones</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="1">
-            <widget class="QPushButton" name="btnGuardarServ">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Guardar</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="btnEliminarServ">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Eliminar</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="btnModificarServ">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Modificar</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QPushButton" name="btnLimpiarServ">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Limpiar</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="3">
-            <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLineEdit" name="txtBuscarConcepto">
-               <property name="maximumSize">
-                <size>
-                 <width>400</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btnBuscarConcepto">
+              <widget class="QLabel" name="label_11">
                <property name="minimumSize">
                 <size>
-                 <width>75</width>
+                 <width>125</width>
                  <height>0</height>
                 </size>
                </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_3">
                <property name="maximumSize">
                 <size>
-                 <width>75</width>
+                 <width>150</width>
                  <height>16777215</height>
                 </size>
                </property>
-               <property name="text">
-                <string>Buscar</string>
-               </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="btnRecargarTabla">
-               <property name="text">
-                <string>Recargar tabla</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_10">
+              <spacer name="horizontalSpacer_11">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1604,22 +1810,118 @@
           </layout>
          </widget>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="icon">
-        <iconset>
-         <normaloff>img/icono_facturacion.png</normaloff>img/icono_facturacion.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Facturación</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_8">
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Servicios</string>
+        <item row="2" column="0">
+         <widget class="QFrame" name="frame_2">
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="tabSeleccionClientes">
+             <column>
+              <property name="text">
+               <string>DNI</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Núm factura</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="3">
+         <widget class="QFrame" name="frame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_8">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Subtotal:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QTableWidget" name="tabVentas">
+             <column>
+              <property name="text">
+               <string>Concepto</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Precio</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Unidades</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Subtotal</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="lblPrecioTotal">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(229, 219, 13, 184);
+border: 1px solid black;</string>
+             </property>
+             <property name="text">
+              <string>0€</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Procesar venta</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -1633,7 +1935,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1709</width>
+     <width>1216</width>
      <height>23</height>
     </rect>
    </property>
@@ -1699,8 +2001,8 @@
   <action name="actionSalirbar">
    <property name="icon">
     <iconset>
-     <normaloff>img/icono_salir.png</normaloff>
-     <normalon>img/icono_salir.png</normalon>img/icono_salir.png</iconset>
+     <normaloff>../../../../../home/a21mariogb/.designer/backup/img/icono_salir.png</normaloff>
+     <normalon>../../../../../home/a21mariogb/.designer/backup/img/icono_salir.png</normalon>../../../../../home/a21mariogb/.designer/backup/img/icono_salir.png</iconset>
    </property>
    <property name="text">
     <string>Salirbar</string>
@@ -1709,7 +2011,7 @@
   <action name="actionGuardar_Copia_Seguridad">
    <property name="icon">
     <iconset>
-     <normaloff>img/exportar_bbdd.png</normaloff>img/exportar_bbdd.png</iconset>
+     <normaloff>../../../../../home/a21mariogb/.designer/backup/img/exportar_bbdd.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/exportar_bbdd.png</iconset>
    </property>
    <property name="text">
     <string>Guardar Copia Seguridad</string>
@@ -1718,7 +2020,7 @@
   <action name="actionRestaurar_Copia_Seguridad">
    <property name="icon">
     <iconset>
-     <normaloff>img/importar_bbdd.png</normaloff>img/importar_bbdd.png</iconset>
+     <normaloff>../../../../../home/a21mariogb/.designer/backup/img/importar_bbdd.png</normaloff>../../../../../home/a21mariogb/.designer/backup/img/importar_bbdd.png</iconset>
    </property>
    <property name="text">
     <string>Restaurar Copia Seguridad</string>
