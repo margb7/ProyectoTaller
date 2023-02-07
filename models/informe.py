@@ -2,8 +2,10 @@ import os
 import platform
 import subprocess
 
+from numpy.ma import nomask
 from reportlab.pdfgen import canvas
 from datetime import datetime
+from .factura import Factura
 
 import ajustes_ui
 import conexion
@@ -57,7 +59,8 @@ class Informe:
 
                 report.setFont("Helvetica", size=7)
                 report.drawString(i, j, cli.dni)
-                report.drawString(ajustes_ui.calcular_inicio_texto_centrado(pixeles_centro[1], cli.nombre, 7), j, cli.nombre)
+                report.drawString(ajustes_ui.calcular_inicio_texto_centrado(pixeles_centro[1], cli.nombre, 7), j,
+                                  cli.nombre)
                 report.drawString(i + 225, j, cli.direccion)
                 report.drawString(i + 330, j, cli.provincia)
                 report.drawString(i + 425, j, cli.municipio)
@@ -135,6 +138,60 @@ class Informe:
             print("Error informes de estado de vehículos", error)
 
     @staticmethod
+    def generar_informe_factura(factura: Factura):
+
+        try:
+
+            nombre = f"factura_{factura.dni}_{factura.id_factura}.pdf"
+
+            report = canvas.Canvas(f'informes/{nombre}')
+            report.setTitle("Factura")
+
+            Informe.__generar_titulo_pagina(report, "Factura")
+
+            Informe.__generar_pie_informe(report, "Factura")
+
+            report.setFont("Helvetica-Bold", size=11)
+
+            report.drawString(50, 700, "Datos cliente")
+
+            report.setFont("Helvetica", size=8)
+            report.drawString(55, 675, "- DNI:")
+            report.drawString(150, 675, factura.dni)
+
+            report.drawString(55, 660, "- Matrícula:")
+            report.drawString(150, 660, factura.matricula)
+
+            report.drawString(55, 645, "- Fecha factura:")
+            report.drawString(150, 645, factura.fecha_factura)
+
+            report.drawString(55, 630, "- Número factura:")
+            report.drawString(150, 630, str(factura.id_factura))
+
+            report.line(50, 620, 525, 620)
+
+            report.save()
+
+            root_path = os.path.join(".", "informes")
+            root_path += os.sep
+
+            for file in os.listdir(root_path):
+
+                if file.endswith(nombre):
+
+                    if platform.system() == "Windows":
+
+                        os.startfile(os.path.join(root_path, file))
+
+                    else:
+
+                        subprocess.call(("xdg-open", os.path.join(root_path, file)))
+
+        except Exception as error:
+
+            print("Error al generar el informe de la factura", error)
+
+    @staticmethod
     def __generar_titulo_pagina(page: canvas.Canvas, titulo: str):
 
         try:
@@ -159,7 +216,7 @@ class Informe:
 
             page.setFillColor("black")
 
-            page.setFont("Helvetica-Bold", 10)
+            page.setFont("Helvetica-Bold", 12)
             page.drawString(75, 725, titulo)
             page.line(50, 715, 525, 715)
 

@@ -1315,169 +1315,205 @@
     </argument>
     <table id="482" parent="166" name="clientes"/>
     <table id="483" parent="166" name="coches"/>
-    <table id="484" parent="166" name="municipios"/>
-    <table id="485" parent="166" name="productos"/>
-    <table id="486" parent="166" name="provincias"/>
-    <table id="487" parent="166" name="sqlite_master">
+    <table id="484" parent="166" name="facturas"/>
+    <table id="485" parent="166" name="municipios"/>
+    <table id="486" parent="166" name="productos"/>
+    <table id="487" parent="166" name="provincias"/>
+    <table id="488" parent="166" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="488" parent="166" name="sqlite_sequence">
+    <table id="489" parent="166" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <column id="489" parent="482" name="dni">
+    <column id="490" parent="482" name="dni">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="490" parent="482" name="nombre">
+    <column id="491" parent="482" name="nombre">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="491" parent="482" name="alta">
+    <column id="492" parent="482" name="alta">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="492" parent="482" name="direccion">
+    <column id="493" parent="482" name="direccion">
       <DasType>TEXT|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="493" parent="482" name="provincia">
+    <column id="494" parent="482" name="provincia">
       <DasType>TEXT|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="494" parent="482" name="municipio">
+    <column id="495" parent="482" name="municipio">
       <DasType>TEXT|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="495" parent="482" name="pago">
+    <column id="496" parent="482" name="pago">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <index id="496" parent="482" name="sqlite_autoindex_clientes_1">
+    <index id="497" parent="482" name="sqlite_autoindex_clientes_1">
       <ColNames>dni</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="497" parent="482">
+    <key id="498" parent="482">
       <ColNames>dni</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_clientes_1</UnderlyingIndexName>
     </key>
-    <key id="498" parent="482">
+    <key id="499" parent="482">
       <ColNames>dni</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_clientes_1</UnderlyingIndexName>
     </key>
-    <column id="499" parent="483" name="matricula">
+    <column id="500" parent="483" name="matricula">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="500" parent="483" name="dnicli">
+    <column id="501" parent="483" name="dnicli">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="501" parent="483" name="marca">
+    <column id="502" parent="483" name="marca">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="502" parent="483" name="modelo">
+    <column id="503" parent="483" name="modelo">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="503" parent="483" name="motor">
+    <column id="504" parent="483" name="motor">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <foreign-key id="504" parent="483">
+    <foreign-key id="505" parent="483">
       <ColNames>dnicli</ColNames>
       <RefColNames>dni</RefColNames>
       <RefTableName>clientes</RefTableName>
     </foreign-key>
-    <index id="505" parent="483" name="sqlite_autoindex_coches_1">
+    <index id="506" parent="483" name="sqlite_autoindex_coches_1">
       <ColNames>matricula</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="506" parent="483">
+    <key id="507" parent="483">
       <ColNames>matricula</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_coches_1</UnderlyingIndexName>
     </key>
-    <key id="507" parent="483">
+    <key id="508" parent="483">
       <ColNames>matricula</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_coches_1</UnderlyingIndexName>
     </key>
-    <column id="508" parent="484" name="provincia_id">
+    <column id="509" parent="484" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="510" parent="484" name="dni">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="511" parent="484" name="matricula">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="512" parent="484" name="fechafac">
+      <DasType>date|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="513" parent="484" name="dni_fk">
+      <ColNames>dni</ColNames>
+      <RefColNames>dni</RefColNames>
+      <RefTableName>clientes</RefTableName>
+    </foreign-key>
+    <foreign-key id="514" parent="484" name="matricula_fk">
+      <ColNames>matricula</ColNames>
+      <RefColNames>matricula</RefColNames>
+      <RefTableName>coches</RefTableName>
+    </foreign-key>
+    <key id="515" parent="484" name="id">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="516" parent="485" name="provincia_id">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="509" parent="484" name="municipio">
+    <column id="517" parent="485" name="municipio">
       <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="510" parent="484" name="id">
+    <column id="518" parent="485" name="id">
       <DasType>INTEGER|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="511" parent="485" name="codigo">
+    <column id="519" parent="486" name="codigo">
       <AutoIncrement>1</AutoIncrement>
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="512" parent="485" name="concepto">
+    <column id="520" parent="486" name="concepto">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="513" parent="485" name="precio_unidad">
+    <column id="521" parent="486" name="precio_unidad">
       <DasType>TEXT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <key id="514" parent="485">
+    <key id="522" parent="486">
       <ColNames>codigo</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="515" parent="486" name="id">
+    <column id="523" parent="487" name="id">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="516" parent="486" name="provincia">
+    <column id="524" parent="487" name="provincia">
       <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="517" parent="487" name="type">
+    <column id="525" parent="488" name="type">
       <DasType>TEXT|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="518" parent="487" name="name">
+    <column id="526" parent="488" name="name">
       <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="519" parent="487" name="tbl_name">
+    <column id="527" parent="488" name="tbl_name">
       <DasType>TEXT|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="520" parent="487" name="rootpage">
+    <column id="528" parent="488" name="rootpage">
       <DasType>INT|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="521" parent="487" name="sql">
+    <column id="529" parent="488" name="sql">
       <DasType>TEXT|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="522" parent="488" name="name">
+    <column id="530" parent="489" name="name">
       <Position>1</Position>
     </column>
-    <column id="523" parent="488" name="seq">
+    <column id="531" parent="489" name="seq">
       <Position>2</Position>
     </column>
   </database-model>

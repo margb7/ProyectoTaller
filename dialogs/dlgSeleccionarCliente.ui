@@ -14,7 +14,54 @@
    <string>Selecciona cliente</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1">
+   <item row="1" column="0" colspan="2">
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Búsqueda</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Buscar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>Recargar lista</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="4">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Clientes</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QTableWidget" name="tabClientes">
+        <column>
+         <property name="text">
+          <string>DNI</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Matrícula</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="3">
     <widget class="QPushButton" name="btnAceptarCliente">
      <property name="minimumSize">
       <size>
@@ -30,20 +77,6 @@
      </property>
      <property name="text">
       <string>Seleccionar</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="lblSeleccionarCliente">
-     <property name="text">
-      <string>Selecciona un cliente para mostrar las facturas:</string>
      </property>
     </widget>
    </item>

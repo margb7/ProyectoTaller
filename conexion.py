@@ -1,9 +1,8 @@
-from PyQt6 import QtSql
-from typing import List
-
 import events
+
+from PyQt6 import QtSql, QtWidgets
+from typing import List
 from models.models import Cliente, Coche, Servicio
-from ventMain import *
 
 
 class Conexion:
@@ -128,10 +127,6 @@ class Conexion:
                 while query.next():
 
                     servicios.append(Servicio(query.value(0), query.value(1), query.value(2)))
-
-                    print(query.value(0))
-                    print(query.value(1))
-                    print(query.value(2))
 
         except Exception as error:
 
