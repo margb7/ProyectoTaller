@@ -5,7 +5,8 @@ from views import views
 from facturacion import TabFacturacion
 from servicios import TabServicios
 
-from PyQt6 import QtWidgets, QtCore, QtGui
+from PyQt6 import QtCore, QtGui
+from PyQt6.QtWidgets import QMainWindow, QLabel, QMessageBox, QTableWidgetItem, QTableWidget, QApplication
 
 import ajustes_ui
 import events
@@ -14,7 +15,7 @@ from models.models import Coche, Cliente
 from ventMain import Ui_mainWindow
 
 
-class Main(QtWidgets.QMainWindow):
+class Main(QMainWindow):
 
     def __init__(self):
 
@@ -30,7 +31,7 @@ class Main(QtWidgets.QMainWindow):
 
         # Texto barra de estado
 
-        self.lblTiempo = QtWidgets.QLabel("")
+        self.lblTiempo = QLabel("")
         self.contador = QtCore.QTimer(self)
 
         self.contador.setInterval(1000)
@@ -39,7 +40,7 @@ class Main(QtWidgets.QMainWindow):
         self.contador.start()
 
         self.ui.statusbar.addWidget(self.lblTiempo)
-        self.ui.statusbar.addPermanentWidget(QtWidgets.QLabel("Mario González Besada - 2DAM"))
+        self.ui.statusbar.addPermanentWidget(QLabel("Mario González Besada - 2DAM"))
 
         # Events
         self.ui.actionSalir.triggered.connect(self.salir)
@@ -278,10 +279,10 @@ class Main(QtWidgets.QMainWindow):
 
                 if borrado:
 
-                    msg = QtWidgets.QMessageBox()
+                    msg = QMessageBox()
                     msg.setModal(True)
                     msg.setWindowTitle("Aviso")
-                    msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    msg.setIcon(QMessageBox.Icon.Information)
                     msg.setText("Cliente dado de baja")
                     msg.exec()
 
@@ -341,11 +342,11 @@ class Main(QtWidgets.QMainWindow):
 
             for coche in lista_coches:
 
-                self.ui.tabClientes.setItem(i, 0, QtWidgets.QTableWidgetItem(coche.dnicli))
-                self.ui.tabClientes.setItem(i, 1, QtWidgets.QTableWidgetItem(coche.matricula))
-                self.ui.tabClientes.setItem(i, 2, QtWidgets.QTableWidgetItem(coche.marca))
-                self.ui.tabClientes.setItem(i, 3, QtWidgets.QTableWidgetItem(coche.modelo))
-                self.ui.tabClientes.setItem(i, 4, QtWidgets.QTableWidgetItem(coche.motor))
+                self.ui.tabClientes.setItem(i, 0, QTableWidgetItem(coche.dnicli))
+                self.ui.tabClientes.setItem(i, 1, QTableWidgetItem(coche.matricula))
+                self.ui.tabClientes.setItem(i, 2, QTableWidgetItem(coche.marca))
+                self.ui.tabClientes.setItem(i, 3, QTableWidgetItem(coche.modelo))
+                self.ui.tabClientes.setItem(i, 4, QTableWidgetItem(coche.motor))
 
                 item0 = self.ui.tabClientes.item(i, 0)
                 item1 = self.ui.tabClientes.item(i, 1)
@@ -368,11 +369,11 @@ class Main(QtWidgets.QMainWindow):
 
             for i in range(5):
 
-                self.ui.tabClientes.setItem(ultima_fila, i, QtWidgets.QTableWidgetItem(""))
+                self.ui.tabClientes.setItem(ultima_fila, i, QTableWidgetItem(""))
 
                 self.ui.tabClientes.item(ultima_fila, i).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
 
-            self.ui.tabClientes.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+            self.ui.tabClientes.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
 
             ajustes_ui.aplicar_colores_tabla(self.ui.tabClientes)
 
@@ -582,7 +583,7 @@ class Main(QtWidgets.QMainWindow):
 if __name__ == '__main__':
     conexion.Conexion.conexion()
 
-    app = QtWidgets.QApplication([])
+    app = QApplication([])
     window = Main()
 
     # Fuentes de texto

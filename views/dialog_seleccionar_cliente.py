@@ -1,40 +1,43 @@
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtCore
+from PyQt6.QtWidgets import QDialog, QHeaderView, QTableWidget, QTableWidgetItem
 
 import conexion
-from dialogs.dlgSeleccionarCliente import Ui_dlgSeleccionCliente
+from dialogs.dlgSeleccionarFactura import Ui_dlgSeleccionCliente
 
 
-class DialogSeleccionarCliente(QtWidgets.QDialog):
+class DialogSeleccionarCliente(QDialog):
 
     def __init__(self):
         super(DialogSeleccionarCliente, self).__init__()
 
         self.ui = Ui_dlgSeleccionCliente()
         self.ui.setupUi(self)
-        self.ui.btnAceptarCliente.clicked.connect(self.seleccionar_cliente)
+        self.ui.btnAceptar.clicked.connect(self.seleccionar_factura)
         self.cliente = None
 
+        self.ui.txtBusqueda.textEdited.connect(self.actualizar_lista_facturas)
+
         tab_header = self.ui.tabClientes.horizontalHeader()
-        tab_header.setSectionResizeMode(QtWidgets.QHeaderView.sectionResizeMode(tab_header, 0).Stretch)
+        tab_header.setSectionResizeMode(QHeaderView.sectionResizeMode(tab_header, 0).Stretch)
 
-        self.ui.tabClientes.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+        self.ui.tabClientes.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
 
-        self.actualizar_lista_clientes()
 
-    def actualizar_lista_clientes(self):
+        self.actualizar_lista_facturas()
+
+    def actualizar_lista_facturas(self):
 
         try:
 
             coches = conexion.Conexion.cargar_lista_coches()
             tab_clientes = self.ui.tabClientes
 
-            tab_clientes.clear()
             tab_clientes.setRowCount(len(coches))
 
             for i, coche in enumerate(coches):
 
-                item = QtWidgets.QTableWidgetItem(str(coche.dnicli))
-                item_matr = QtWidgets.QTableWidgetItem(str(coche.matricula))
+                item = QTableWidgetItem(str(coche.dnicli))
+                item_matr = QTableWidgetItem(str(coche.matricula))
 
                 item.setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
                 item_matr.setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
@@ -46,7 +49,7 @@ class DialogSeleccionarCliente(QtWidgets.QDialog):
 
             print("Error al actualizar la lista de clientes en dialogo de selección", error)
 
-    def seleccionar_cliente(self):
+    def seleccionar_factura(self):
 
         if len(self.ui.tabClientes.selectedItems()) != 0:
 

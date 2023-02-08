@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'dlgSeleccionarCliente.ui'
+# Form implementation generated from reading ui file 'dlgSeleccionarFactura.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.0
 #
@@ -12,21 +12,12 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_dlgSeleccionCliente(object):
     def setupUi(self, dlgSeleccionCliente):
         dlgSeleccionCliente.setObjectName("dlgSeleccionCliente")
-        dlgSeleccionCliente.resize(866, 538)
+        dlgSeleccionCliente.resize(866, 643)
         self.gridLayout = QtWidgets.QGridLayout(dlgSeleccionCliente)
         self.gridLayout.setObjectName("gridLayout")
-        self.lineEdit = QtWidgets.QLineEdit(dlgSeleccionCliente)
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 1, 0, 1, 2)
         self.label = QtWidgets.QLabel(dlgSeleccionCliente)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(dlgSeleccionCliente)
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout.addWidget(self.pushButton, 1, 2, 1, 1)
-        self.pushButton_2 = QtWidgets.QPushButton(dlgSeleccionCliente)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout.addWidget(self.pushButton_2, 1, 3, 1, 1)
         self.groupBox = QtWidgets.QGroupBox(dlgSeleccionCliente)
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
@@ -40,12 +31,19 @@ class Ui_dlgSeleccionCliente(object):
         item = QtWidgets.QTableWidgetItem()
         self.tabClientes.setHorizontalHeaderItem(1, item)
         self.gridLayout_2.addWidget(self.tabClientes, 0, 0, 1, 1)
-        self.gridLayout.addWidget(self.groupBox, 3, 0, 1, 4)
-        self.btnAceptarCliente = QtWidgets.QPushButton(dlgSeleccionCliente)
-        self.btnAceptarCliente.setMinimumSize(QtCore.QSize(100, 0))
-        self.btnAceptarCliente.setMaximumSize(QtCore.QSize(125, 16777215))
-        self.btnAceptarCliente.setObjectName("btnAceptarCliente")
-        self.gridLayout.addWidget(self.btnAceptarCliente, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.groupBox, 3, 0, 1, 3)
+        self.txtBusqueda = QtWidgets.QLineEdit(dlgSeleccionCliente)
+        self.txtBusqueda.setObjectName("txtBusqueda")
+        self.gridLayout.addWidget(self.txtBusqueda, 1, 0, 1, 3)
+        self.btnCancelar = QtWidgets.QPushButton(dlgSeleccionCliente)
+        self.btnCancelar.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.btnCancelar.setObjectName("btnCancelar")
+        self.gridLayout.addWidget(self.btnCancelar, 4, 0, 1, 1)
+        self.btnAceptar = QtWidgets.QPushButton(dlgSeleccionCliente)
+        self.btnAceptar.setMinimumSize(QtCore.QSize(100, 0))
+        self.btnAceptar.setMaximumSize(QtCore.QSize(125, 16777215))
+        self.btnAceptar.setObjectName("btnAceptar")
+        self.gridLayout.addWidget(self.btnAceptar, 4, 1, 1, 1)
 
         self.retranslateUi(dlgSeleccionCliente)
         QtCore.QMetaObject.connectSlotsByName(dlgSeleccionCliente)
@@ -54,14 +52,13 @@ class Ui_dlgSeleccionCliente(object):
         _translate = QtCore.QCoreApplication.translate
         dlgSeleccionCliente.setWindowTitle(_translate("dlgSeleccionCliente", "Selecciona cliente"))
         self.label.setText(_translate("dlgSeleccionCliente", "Búsqueda"))
-        self.pushButton.setText(_translate("dlgSeleccionCliente", "Buscar"))
-        self.pushButton_2.setText(_translate("dlgSeleccionCliente", "Recargar lista"))
-        self.groupBox.setTitle(_translate("dlgSeleccionCliente", "Clientes"))
+        self.groupBox.setTitle(_translate("dlgSeleccionCliente", "Facturas"))
         item = self.tabClientes.horizontalHeaderItem(0)
         item.setText(_translate("dlgSeleccionCliente", "DNI"))
         item = self.tabClientes.horizontalHeaderItem(1)
         item.setText(_translate("dlgSeleccionCliente", "Matrícula"))
-        self.btnAceptarCliente.setText(_translate("dlgSeleccionCliente", "Seleccionar"))
+        self.btnCancelar.setText(_translate("dlgSeleccionCliente", "Cancelar"))
+        self.btnAceptar.setText(_translate("dlgSeleccionCliente", "Seleccionar"))
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+import typing
+
 from models.factura import Factura
 from PyQt6 import QtSql
 
@@ -5,7 +7,7 @@ from PyQt6 import QtSql
 class DaoFacturas:
 
     @staticmethod
-    def obtener_facturas() -> list[Factura]:
+    def obtener_facturas() -> typing.List[Factura]:
         out = []
 
         query = QtSql.QSqlQuery()

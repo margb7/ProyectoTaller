@@ -7,16 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>866</width>
-    <height>538</height>
+    <height>643</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Selecciona cliente</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0" colspan="2">
-    <widget class="QLineEdit" name="lineEdit"/>
-   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -24,24 +21,10 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Buscar</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="text">
-      <string>Recargar lista</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="4">
+   <item row="3" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Clientes</string>
+      <string>Facturas</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
@@ -61,8 +44,24 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="3">
-    <widget class="QPushButton" name="btnAceptarCliente">
+   <item row="1" column="0" colspan="3">
+    <widget class="QLineEdit" name="txtBusqueda"/>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="btnCancelar">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Cancelar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QPushButton" name="btnAceptar">
      <property name="minimumSize">
       <size>
        <width>100</width>

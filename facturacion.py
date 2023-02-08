@@ -1,3 +1,5 @@
+import typing
+
 import conexion
 import events
 import views.dialog_seleccionar_cliente
@@ -6,7 +8,8 @@ from models.factura import Factura
 from models.informe import Informe
 
 from ventMain import Ui_mainWindow
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtCore
+from PyQt6.QtWidgets import QComboBox, QHeaderView, QTableWidget, QLineEdit, QPushButton, QTableWidgetItem, QSpinBox
 
 
 class TabFacturacion:
@@ -14,20 +17,22 @@ class TabFacturacion:
     def __init__(self, ui: Ui_mainWindow):
 
         self.ui = ui
-        self.conceptos: list[QtWidgets.QComboBox] = []
+        self.conceptos: typing.List[QComboBox] = []
+        self.unidades: typing.List[QSpinBox] = []
+
         self.dlg_seleccionar_cliente = views.dialog_seleccionar_cliente.DialogSeleccionarCliente()
         self.factura = None
 
         facturacion_header = self.ui.tabSeleccionClientes.horizontalHeader()
-        facturacion_header.setSectionResizeMode(QtWidgets.QHeaderView.sectionResizeMode(facturacion_header, 0).Stretch)
+        facturacion_header.setSectionResizeMode(QHeaderView.sectionResizeMode(facturacion_header, 0).Stretch)
 
-        self.ui.tabVentas.setSelectionMode(QtWidgets.QTableWidget.SelectionMode.SingleSelection)
-        self.ui.tabVentas.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+        self.ui.tabVentas.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
+        self.ui.tabVentas.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
 
         ventas_header = self.ui.tabVentas.horizontalHeader()
-        ventas_header.setSectionResizeMode(QtWidgets.QHeaderView.sectionResizeMode(ventas_header, 0).Stretch)
+        ventas_header.setSectionResizeMode(QHeaderView.sectionResizeMode(ventas_header, 0).Stretch)
 
-        ventas_header.setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+        ventas_header.setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
 
         self.cargar_linea_venta(1)
 
@@ -38,7 +43,7 @@ class TabFacturacion:
         self.ui.btnSeleccionarCliente.clicked.connect(self.dlg_seleccionar_cliente.show)
         self.ui.btnImprimirFactura.clicked.connect(self.imprimir_factura)
 
-        self.dlg_seleccionar_cliente.ui.btnAceptarCliente.clicked.connect(self.seleccionar_cliente)
+        self.dlg_seleccionar_cliente.ui.btnAceptar.clicked.connect(self.seleccionar_factura)
         self.ui.btnLimpiarFact.clicked.connect(self.limpiar_facturas)
 
     def imprimir_factura(self):
@@ -64,7 +69,7 @@ class TabFacturacion:
 
             print("Error al imprimir factura", error)
 
-    def seleccionar_cliente(self):
+    def seleccionar_factura(self):
 
         try:
 
@@ -102,28 +107,33 @@ class TabFacturacion:
             lista_conceptos.insert(0, "")
             tab_ventas = self.ui.tabVentas
 
-            cmb_servicio = QtWidgets.QComboBox()
-            txt_unidades = QtWidgets.QLineEdit()
-            btn_borrar = QtWidgets.QPushButton("Retirar")
+            cmb_servicio = QComboBox()
+            spn_unidades = QSpinBox()
+
+            spn_unidades.setValue(1)
+            spn_unidades.setMinimum(1)
+
+            btn_borrar = QPushButton("Retirar")
 
             btn_borrar.clicked.connect(lambda index: self.__borrar_linea(i))
 
-            txt_unidades.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-
             tab_ventas.setCellWidget(i, 0, cmb_servicio)
-            tab_ventas.setItem(i, 2, QtWidgets.QTableWidgetItem(str("")))
+            tab_ventas.setCellWidget(i, 2, spn_unidades)
+            tab_ventas.setItem(i, 2, QTableWidgetItem(str("")))
             tab_ventas.setCellWidget(i, 4, btn_borrar)
 
             cmb_servicio.addItems(lista_conceptos)
             cmb_servicio.currentIndexChanged.connect(self.__recargar_precios_servicios)
+            spn_unidades.valueChanged.connect(self.__recargar_precios_servicios)
 
-            tab_ventas.setItem(i, 1, QtWidgets.QTableWidgetItem())
-            tab_ventas.setItem(i, 3, QtWidgets.QTableWidgetItem())
+            tab_ventas.setItem(i, 1, QTableWidgetItem())
+            tab_ventas.setItem(i, 3, QTableWidgetItem())
 
             tab_ventas.item(i, 1).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
             tab_ventas.item(i, 3).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
 
             self.conceptos.append(cmb_servicio)
+            self.unidades.append(spn_unidades)
 
         except Exception as error:
 
@@ -136,16 +146,16 @@ class TabFacturacion:
             if len(self.conceptos) != 1:
 
                 tab_venta = self.ui.tabVentas
-
                 self.conceptos.pop(index)
-
-                print(len(self.conceptos))
+                self.unidades.pop(index)
+                tab_venta.removeRow(index)
 
             self.__recargar_precios_servicios()
 
         except Exception as error:
 
             print("Error al borrar una línea de venta", error)
+            print("Index: " + index)
 
     def ampliar_linea_ventas(self):
 
@@ -192,26 +202,33 @@ class TabFacturacion:
 
                 if cmb.currentText() == "":
 
-                    tab_ventas.setItem(i, 1, QtWidgets.QTableWidgetItem(str("")))
+                    tab_ventas.setItem(i, 1, QTableWidgetItem(str("")))
+                    tab_ventas.setItem(i, 1, QTableWidgetItem(str("")))
+                    tab_ventas.setItem(i, 3, QTableWidgetItem(str("")))
 
                 else:
 
-                    precio = conexion.Conexion.obtener_precio_servicio_por_concepto(cmb.currentText())
+                    preciostr = conexion.Conexion.obtener_precio_servicio_por_concepto(cmb.currentText())
+                    preciostr = preciostr.replace(",", ".")
 
-                    tab_ventas.setItem(i, 1, QtWidgets.QTableWidgetItem(str(precio) + "€"))
-                    tab_ventas.setItem(i, 2, QtWidgets.QTableWidgetItem(str("1")))
-                    tab_ventas.setItem(i, 3, QtWidgets.QTableWidgetItem(str(precio) + "€"))
+                    precio = float(preciostr)
+
+                    tab_ventas.setItem(i, 1, QTableWidgetItem(str("{:.2f}".format(precio)) + "€"))
+
+                    subtotal = precio * self.unidades[i].value()
+
+                    tab_ventas.setItem(i, 3, QTableWidgetItem("{:.2f}".format(subtotal) + "€"))
 
                     tab_ventas.item(i, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     tab_ventas.item(i, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     tab_ventas.item(i, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-                    precio_total += float(precio.replace(",", "."))
+                    precio_total += float(subtotal)
 
                     # Ampliar para poder incluír más productos
                     self.ampliar_linea_ventas()
 
-            self.ui.lblPrecioTotal.setText(str(precio_total).replace(".", ",") + "€")
+            self.ui.lblPrecioTotal.setText(str("{:.2f}".format(precio_total)).replace(".", ",") + "€")
 
         except Exception as error:
 
@@ -222,8 +239,13 @@ class TabFacturacion:
         try:
 
             self.conceptos.clear()
-            self.cargar_linea_venta()
+            self.unidades.clear()
+            self.cargar_linea_venta(1)
             self.__recargar_precios_servicios()
+            self.ui.txtFactDni.setText("")
+            self.ui.txtMatriculaFact.setText("")
+            self.ui.txtNumFactura.setText("")
+            self.ui.txtProvinciaFact.setText("")
 
         except Exception as error:
 
