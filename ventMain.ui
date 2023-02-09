@@ -1628,6 +1628,52 @@
            <string>Lista de ventas</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_14">
+           <item row="1" column="4">
+            <widget class="QLabel" name="lblPrecioTotal">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(229, 219, 13, 184);
+border: 1px solid black;</string>
+             </property>
+             <property name="text">
+              <string>0€</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="btnProcesarFact">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Procesar venta</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="label_8">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Subtotal:</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="1" colspan="4">
             <widget class="QTableWidget" name="tabVentas">
              <column>
@@ -1657,52 +1703,6 @@
              </column>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton">
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Procesar venta</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QLabel" name="label_8">
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Subtotal:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QLabel" name="lblPrecioTotal">
-             <property name="maximumSize">
-              <size>
-               <width>250</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgba(229, 219, 13, 184);
-border: 1px solid black;</string>
-             </property>
-             <property name="text">
-              <string>0€</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -1724,57 +1724,10 @@ border: 1px solid black;</string>
            <property name="bottomMargin">
             <number>20</number>
            </property>
-           <item row="2" column="5">
-            <widget class="QPushButton" name="btnImprimirFactura">
-             <property name="text">
-              <string>Imprimir</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="6">
-            <widget class="QPushButton" name="pushButton_5">
-             <property name="text">
-              <string>PushButton</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="btnSeleccionarCliente">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Buscar factura</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="5">
-            <widget class="QPushButton" name="pushButton_3">
-             <property name="text">
-              <string>PushButton</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="6">
-            <widget class="QPushButton" name="btnLimpiarFact">
-             <property name="text">
-              <string>Limpiar</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QLabel" name="label_9">
+              <widget class="QLabel" name="lblFactDni">
                <property name="minimumSize">
                 <size>
                  <width>125</width>
@@ -1782,12 +1735,12 @@ border: 1px solid black;</string>
                 </size>
                </property>
                <property name="text">
-                <string>Número factura:</string>
+                <string>DNI:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtNumFactura">
+              <widget class="QLineEdit" name="txtFactDni">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1800,7 +1753,7 @@ border: 1px solid black;</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_9">
+              <spacer name="horizontalSpacer_7">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1857,17 +1810,24 @@ border: 1px solid black;</string>
              </item>
             </layout>
            </item>
-           <item row="0" column="4" rowspan="3">
-            <widget class="Line" name="line">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
+           <item row="2" column="6">
+            <widget class="QPushButton" name="btnLimpiarFact">
+             <property name="text">
+              <string>Limpiar</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item row="0" column="5">
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
-              <widget class="QLabel" name="lblFactDni">
+              <widget class="QLabel" name="label_9">
                <property name="minimumSize">
                 <size>
                  <width>125</width>
@@ -1875,12 +1835,12 @@ border: 1px solid black;</string>
                 </size>
                </property>
                <property name="text">
-                <string>DNI:</string>
+                <string>Número factura:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtFactDni">
+              <widget class="QLineEdit" name="txtNumFactura">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1893,7 +1853,7 @@ border: 1px solid black;</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_7">
+              <spacer name="horizontalSpacer_9">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1906,6 +1866,39 @@ border: 1px solid black;</string>
               </spacer>
              </item>
             </layout>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="btnSeleccionarCliente">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Buscar factura</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4" rowspan="3">
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="6">
+            <widget class="QPushButton" name="pushButton_5">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
            </item>
            <item row="2" column="1">
             <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -1950,6 +1943,13 @@ border: 1px solid black;</string>
              </item>
             </layout>
            </item>
+           <item row="2" column="5">
+            <widget class="QPushButton" name="btnImprimirFactura">
+             <property name="text">
+              <string>Imprimir</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -1966,7 +1966,13 @@ border: 1px solid black;</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_15">
            <item row="0" column="0">
-            <widget class="QTableWidget" name="tabSeleccionClientes">
+            <widget class="QTableWidget" name="tabFacturas">
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
              <column>
               <property name="text">
                <string>DNI</string>

@@ -1,6 +1,7 @@
 import os
 import platform
 import subprocess
+import typing
 
 from numpy.ma import nomask
 from reportlab.pdfgen import canvas
@@ -138,7 +139,7 @@ class Informe:
             print("Error informes de estado de vehículos", error)
 
     @staticmethod
-    def generar_informe_factura(factura: Factura):
+    def generar_informe_factura(factura: Factura, conceptos: typing.List[str], unidades: typing.List[int], precios: typing.List[str]):
 
         try:
 

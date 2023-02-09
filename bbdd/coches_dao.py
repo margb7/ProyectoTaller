@@ -1,5 +1,6 @@
 import typing
 from models.models import Coche
+from PyQt6 import QtSql
 
 
 class CochesDAO:
@@ -11,10 +12,12 @@ class CochesDAO:
 
         try:
 
-
-
             query = QtSql.QSqlQuery()
-            query.prepare("select matricula, dnicli, marca, modelo, motor from coches where dnicli like %:dnicli%")
+            query.prepare("select matricula, dnicli, marca, modelo, motor from coches where dnicli like :dnicli")
+
+            dnicli = "%" + dnicli + "%"
+
+            query.bindValue(":dnicli", dnicli)
 
             if query.exec():
 

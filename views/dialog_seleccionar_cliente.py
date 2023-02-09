@@ -1,8 +1,11 @@
+import typing
+
 from PyQt6 import QtCore
 from PyQt6.QtWidgets import QDialog, QHeaderView, QTableWidget, QTableWidgetItem
 
-import conexion
 from dialogs.dlgSeleccionarFactura import Ui_dlgSeleccionCliente
+from bbdd.coches_dao import CochesDAO
+from models.models import Coche
 
 
 class DialogSeleccionarCliente(QDialog):
@@ -12,16 +15,18 @@ class DialogSeleccionarCliente(QDialog):
 
         self.ui = Ui_dlgSeleccionCliente()
         self.ui.setupUi(self)
-        self.ui.btnAceptar.clicked.connect(self.seleccionar_factura)
-        self.cliente = None
-
-        self.ui.txtBusqueda.textEdited.connect(self.actualizar_lista_facturas)
+        self.cliente: Coche = None
+        self.coches = []
 
         tab_header = self.ui.tabClientes.horizontalHeader()
         tab_header.setSectionResizeMode(QHeaderView.sectionResizeMode(tab_header, 0).Stretch)
 
-        self.ui.tabClientes.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        self.ui.txtBusqueda.textEdited.connect(self.actualizar_lista_facturas)
 
+        self.ui.btnAceptar.clicked.connect(self.seleccionar_factura)
+        self.ui.btnCancelar.clicked.connect(self.hide)
+
+        self.ui.tabClientes.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
 
         self.actualizar_lista_facturas()
 
@@ -29,12 +34,14 @@ class DialogSeleccionarCliente(QDialog):
 
         try:
 
-            coches = conexion.Conexion.cargar_lista_coches()
+            search_str = self.ui.txtBusqueda.text()
+
+            self.coches = CochesDAO.buscarPorDni(search_str)
+
             tab_clientes = self.ui.tabClientes
+            tab_clientes.setRowCount(len(self.coches))
 
-            tab_clientes.setRowCount(len(coches))
-
-            for i, coche in enumerate(coches):
+            for i, coche in enumerate(self.coches):
 
                 item = QTableWidgetItem(str(coche.dnicli))
                 item_matr = QTableWidgetItem(str(coche.matricula))
@@ -53,7 +60,9 @@ class DialogSeleccionarCliente(QDialog):
 
         if len(self.ui.tabClientes.selectedItems()) != 0:
 
-            self.cliente = self.ui.tabClientes.selectedItems()[0].text()
+            index = self.ui.tabClientes.selectedItems()[0].row().__index__()
+
+            self.cliente = self.coches[index]
 
         else:
 

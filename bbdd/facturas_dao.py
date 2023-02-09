@@ -1,22 +1,90 @@
 import typing
+import datetime
 
+from bbdd.servicios_dao import ServicioDAO
 from models.factura import Factura
 from PyQt6 import QtSql
 
+from models.venta_servicio import VentaServicio
 
-class DaoFacturas:
+
+class FacturaDAO:
+
+    @staticmethod
+    def obtener_factura_por_id(id_fact: int) -> Factura:
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("select id, dni, matricula, fechafac from facturas where id = :id")
+
+            query.bindValue(":id", id_fact)
+
+            if query.exec():
+
+                query.next()
+
+                return FacturaDAO.__parse_factura(query)
+
+        except Exception as error:
+
+            print("Error al obtener una factura por id", error)
+
+        return None
 
     @staticmethod
     def obtener_facturas() -> typing.List[Factura]:
+
         out = []
 
-        query = QtSql.QSqlQuery()
+        try:
 
-        query.prepare("select * from facturas")
+            query = QtSql.QSqlQuery()
 
-        while query.next():
+            query.prepare("select id, dni, matricula, fechafac from facturas")
 
-            out.append(DaoFacturas.__parse_factura(query))
+            if query.exec():
+
+                while query.next():
+
+                    out.append(FacturaDAO.__parse_factura(query))
+
+        except Exception as error:
+
+            print("Error al cargar las facturas", error)
+
+        return out
+
+    @staticmethod
+    def cargar_servicios_de_factura(idfact: int) -> typing.List[VentaServicio]:
+
+        out = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("select unidades, id_servicio from facturas_servicios where id_fact = :idfact")
+            query.bindValue(":idfact", idfact)
+
+            if query.exec():
+
+                while query.next():
+
+                    id_serv = query.value("id_servicio")
+                    unidades = query.value("unidades")
+
+                    servicio = ServicioDAO.cargar_servicio_por_id(id_serv)
+
+                    preciostr = servicio.precio_unidad.replace(",", ".")
+                    precio = float(preciostr)
+
+                    out.append(VentaServicio(unidades, servicio.concepto, precio))
+
+        except Exception as error:
+
+            print("Error al cargar servicios de factura", error)
 
         return out
 
@@ -32,7 +100,7 @@ class DaoFacturas:
 
             if query.exec():
 
-                return DaoFacturas.__parse_factura(query)
+                return FacturaDAO.__parse_factura(query)
 
         except Exception as error:
 
@@ -41,14 +109,60 @@ class DaoFacturas:
         return None
 
     @staticmethod
+    def guardar_venta_factura(idfact: int, idserv: int, unidades: int) -> bool:
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("insert into facturas_servicios (id_fact, id_servicio, unidades) values (:idfact, :idserv, :unidades)")
+
+            query.bindValue(":idfact", idfact)
+            query.bindValue(":idserv", idserv)
+            query.bindValue(":unidades", unidades)
+
+            if query.exec():
+
+                return True
+
+        except Exception as error:
+
+            print("Error al guardar las ventas de la factura", error)
+
+        return False
+
+    @staticmethod
+    def crear_factura(dni: str, matricula: str) -> int:
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("INSERT INTO facturas (dni, matricula, fechafac) VALUES (:dni, :matricula, :fecha)")
+
+            query.bindValue(":dni", dni)
+            query.bindValue(":matricula", matricula)
+            query.bindValue(":fecha", datetime.date.today())
+
+            if query.exec():
+
+                return query.lastInsertId()
+
+        except Exception as error:
+
+            print("Error al crear una factura", error)
+
+        return -1
+
+    @staticmethod
     def __parse_factura(query: QtSql.QSqlQuery) -> Factura:
 
         try:
 
-            id = query.value(1)
-            dni = query.value(2)
-            matricula = query.value(3)
-            fecha = query.value(4)
+            id = query.value("id")
+            dni = query.value("dni")
+            matricula = query.value("matricula")
+            fecha = query.value("fechafac")
 
             factura = Factura(id, dni, matricula, fecha)
 
