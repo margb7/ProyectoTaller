@@ -1622,90 +1622,6 @@
         <string>Facturación</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="1" column="1">
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Lista de ventas</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_14">
-           <item row="1" column="4">
-            <widget class="QLabel" name="lblPrecioTotal">
-             <property name="maximumSize">
-              <size>
-               <width>250</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgba(229, 219, 13, 184);
-border: 1px solid black;</string>
-             </property>
-             <property name="text">
-              <string>0€</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="btnProcesarFact">
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Procesar venta</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QLabel" name="label_8">
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Subtotal:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" colspan="4">
-            <widget class="QTableWidget" name="tabVentas">
-             <column>
-              <property name="text">
-               <string>Concepto</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Precio</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Unidades</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Subtotal</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Borrar</string>
-              </property>
-             </column>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBox_6">
           <property name="title">
@@ -1882,7 +1798,7 @@ border: 1px solid black;</string>
               </size>
              </property>
              <property name="text">
-              <string>Buscar factura</string>
+              <string>Seleccionar cliente</string>
              </property>
             </widget>
            </item>
@@ -1983,6 +1899,174 @@ border: 1px solid black;</string>
                <string>Núm factura</string>
               </property>
              </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Lista de ventas</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="2" column="3">
+            <widget class="QLabel" name="label_6">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>IVA:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QLabel" name="lblPrecioTotal">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(229, 219, 13, 184);
+border: 1px solid black;</string>
+             </property>
+             <property name="text">
+              <string>0€</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QLabel" name="label_12">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Total:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="4">
+            <widget class="QTableWidget" name="tabVentas">
+             <column>
+              <property name="text">
+               <string>Concepto</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Precio</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Unidades</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Subtotal</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Borrar</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="label_8">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Subtotal:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QLabel" name="lblIVAFactura">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(229, 219, 13, 184);
+border: 1px solid black;</string>
+             </property>
+             <property name="text">
+              <string>0€</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QLabel" name="lblTotalFactura">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(229, 219, 13, 184);
+border: 1px solid black;</string>
+             </property>
+             <property name="text">
+              <string>0€</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QPushButton" name="btnProcesarFact">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Procesar venta</string>
+             </property>
             </widget>
            </item>
           </layout>

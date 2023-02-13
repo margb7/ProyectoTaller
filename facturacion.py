@@ -1,4 +1,5 @@
 import typing
+from functools import partial
 
 import conexion
 import events
@@ -201,13 +202,8 @@ class TabFacturacion:
             cmb_servicio.setCurrentText(concepto)
             cmb_servicio.currentIndexChanged.connect(self.__recargar_precios_servicios)
 
-            btn_borrar = QPushButton("Retirar")
-
-            btn_borrar.clicked.connect(lambda index: self.__borrar_linea(i))
-
             tab_ventas.setCellWidget(i, 0, cmb_servicio)
             tab_ventas.setCellWidget(i, 2, spn_unidades)
-            tab_ventas.setCellWidget(i, 4, btn_borrar)
 
             spn_unidades.valueChanged.connect(self.__recargar_precios_servicios)
 
@@ -231,23 +227,23 @@ class TabFacturacion:
 
             print("Error al crear una nueva linea de venta", error)
 
-    def __borrar_linea(self, index):
+    def __borrar_linea(self, value: int):
 
         try:
 
-            if len(self.conceptos) != 1:
+            if len(self.conceptos) != 1 and value < len(self.conceptos):
 
                 tab_venta = self.ui.tabVentas
-                self.conceptos.pop(index)
-                self.unidades.pop(index)
-                tab_venta.removeRow(index)
+
+                self.conceptos.pop(value)
+                self.unidades.pop(value)
+                tab_venta.removeRow(value)
 
             self.__recargar_precios_servicios()
 
         except Exception as error:
 
             print("Error al borrar una línea de venta", error)
-            print("Index: " + index)
 
     def ampliar_linea_ventas(self):
 
@@ -292,6 +288,14 @@ class TabFacturacion:
 
             for i, cmb in enumerate(self.conceptos):
 
+                if tab_ventas.cellWidget(i, 4) is not None:
+
+                    tab_ventas.removeCellWidget(i, 4)
+
+                btn_borrar = QPushButton("Retirar")
+                btn_borrar.clicked.connect(partial(self.__borrar_linea, i))
+                tab_ventas.setCellWidget(i, 4, btn_borrar)
+
                 if cmb.currentText() == "":
 
                     tab_ventas.setItem(i, 1, QTableWidgetItem(str("")))
@@ -328,7 +332,12 @@ class TabFacturacion:
                     # Ampliar para poder incluír más productos
                     self.ampliar_linea_ventas()
 
+            iva = precio_total * 0.21
+            total_con_iva = precio_total + iva
+
             self.ui.lblPrecioTotal.setText(str("{:.2f}".format(precio_total)).replace(".", ",") + "€")
+            self.ui.lblIVAFactura.setText(str("{:.2f}".format(iva)).replace(".", ",") + "€")
+            self.ui.lblTotalFactura.setText(str("{:.2f}".format(total_con_iva)).replace(".", ",") + "€")
 
         except Exception as error:
 
