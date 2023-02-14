@@ -38,7 +38,7 @@ class TabFacturacion:
         ventas_header = self.ui.tabVentas.horizontalHeader()
         ventas_header.setSectionResizeMode(QHeaderView.sectionResizeMode(ventas_header, 0).Stretch)
 
-        ventas_header.setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
+        ventas_header.setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents)
 
         # Cargar conceptos a medida que se crean o destruyen
         self.ui.btnGuardarServ.clicked.connect(self.__cargar_conceptos)
@@ -47,9 +47,12 @@ class TabFacturacion:
         self.ui.btnSeleccionarCliente.clicked.connect(self.dlg_seleccionar_cliente.show)
         self.ui.btnImprimirFactura.clicked.connect(self.imprimir_factura)
 
+        self.ui.txtBuscaFactura.textChanged.connect(self.__actualizar_lista_facturas)
+
         self.dlg_seleccionar_cliente.ui.btnAceptar.clicked.connect(self.seleccionar_cliente)
         self.ui.btnLimpiarFact.clicked.connect(self.limpiar_facturas)
         self.ui.btnProcesarFact.clicked.connect(self.crear_factura)
+        self.ui.btnLimpiarBusquedaFactura.clicked.connect(self.limpiar_busqueda_factura)
 
         self.cargar_linea_venta(1)
         self.__actualizar_lista_facturas()
@@ -92,11 +95,42 @@ class TabFacturacion:
 
             print("Error al cargar la factura desde la tabla de facturas", error)
 
+    def limpiar_busqueda_factura(self):
+
+        try:
+
+            self.ui.txtBuscaFactura.setText("")
+            self.__actualizar_lista_facturas()
+
+        except Exception as error:
+
+            print("Error al limpir la busqueda de factura", error)
+
     def __actualizar_lista_facturas(self):
 
         try:
 
-            facturas = FacturaDAO.obtener_facturas()
+            busqueda = self.ui.txtBuscaFactura.text()
+
+            facturas = []
+
+            if busqueda == "":
+
+                facturas = FacturaDAO.obtener_facturas()
+
+            else:
+
+                if self.ui.rbtBuscarNumero.isChecked():
+
+                    if busqueda.isnumeric():
+
+                        num = int(busqueda)
+
+                        facturas = FacturaDAO.buscar_facturas_por_id(num)
+
+                else:
+
+                    facturas = FacturaDAO.buscar_facturas_por_dni(busqueda)
 
             self.ui.tabFacturas.setRowCount(len(facturas))
 
@@ -125,7 +159,8 @@ class TabFacturacion:
 
             if num_factura == "":
 
-                factura = Factura(1, self.ui.txtFactDni.text(), self.ui.txtMatriculaFact.text(), "Fecha tempp")
+                events.Eventos.lanzar_error("Selecciona primero una factura")
+                return
 
             conceptos_str = []
             lista_unidades = []
@@ -202,23 +237,24 @@ class TabFacturacion:
             cmb_servicio.setCurrentText(concepto)
             cmb_servicio.currentIndexChanged.connect(self.__recargar_precios_servicios)
 
-            tab_ventas.setCellWidget(i, 0, cmb_servicio)
-            tab_ventas.setCellWidget(i, 2, spn_unidades)
+            tab_ventas.setItem(i, 0, QTableWidgetItem(""))
+            tab_ventas.setCellWidget(i, 1, cmb_servicio)
+            tab_ventas.setCellWidget(i, 3, spn_unidades)
 
             spn_unidades.valueChanged.connect(self.__recargar_precios_servicios)
 
             if precio_unidad != -1:
 
-                tab_ventas.setItem(i, 1, QTableWidgetItem(str("{:.2f}".format(precio_unidad) + "€")))
+                tab_ventas.setItem(i, 2, QTableWidgetItem(str("{:.2f}".format(precio_unidad) + "€")))
 
             else:
 
-                tab_ventas.setItem(i, 1, QTableWidgetItem(""))
+                tab_ventas.setItem(i, 2, QTableWidgetItem(""))
 
-            tab_ventas.setItem(i, 3, QTableWidgetItem())
+            tab_ventas.setItem(i, 4, QTableWidgetItem())
 
-            tab_ventas.item(i, 1).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
-            tab_ventas.item(i, 3).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
+            tab_ventas.item(i, 2).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
+            tab_ventas.item(i, 4).setFlags(~QtCore.Qt.ItemFlag.ItemIsEditable)
 
             self.conceptos.append(cmb_servicio)
             self.unidades.append(spn_unidades)
@@ -288,44 +324,54 @@ class TabFacturacion:
 
             for i, cmb in enumerate(self.conceptos):
 
-                if tab_ventas.cellWidget(i, 4) is not None:
+                if tab_ventas.cellWidget(i, 5) is not None:
 
-                    tab_ventas.removeCellWidget(i, 4)
+                    tab_ventas.removeCellWidget(i, 5)
 
                 btn_borrar = QPushButton("Retirar")
                 btn_borrar.clicked.connect(partial(self.__borrar_linea, i))
-                tab_ventas.setCellWidget(i, 4, btn_borrar)
+                tab_ventas.setCellWidget(i, 5, btn_borrar)
 
                 if cmb.currentText() == "":
 
-                    tab_ventas.setItem(i, 1, QTableWidgetItem(str("")))
-                    tab_ventas.setItem(i, 1, QTableWidgetItem(str("")))
-                    tab_ventas.setItem(i, 3, QTableWidgetItem(str("")))
+                    tab_ventas.setItem(i, 2, QTableWidgetItem(str("")))
+                    tab_ventas.setItem(i, 2, QTableWidgetItem(str("")))
+                    tab_ventas.setItem(i, 4, QTableWidgetItem(str("")))
 
                 else:
 
-                    preciostr = self.ui.tabVentas.item(i, 1).text()
+                    preciostr = self.ui.tabVentas.item(i, 2).text()
 
                     if preciostr != "":
 
-                        preciostr = self.ui.tabVentas.item(i, 1).text().replace("€", "")
+                        preciostr = self.ui.tabVentas.item(i, 2).text().replace("€", "")
 
                     else:
 
                         preciostr = conexion.Conexion.obtener_precio_servicio_por_concepto(cmb.currentText())
 
+                    servicio = ServicioDAO.cargar_servicio_por_concepto(cmb.currentText())
+
+                    if servicio is not None:
+
+                        tab_ventas.item(i, 0).setText(str(servicio.codigo))
+
+                    else:
+
+                        tab_ventas.item(i, 0).setText("")
+
                     preciostr = preciostr.replace(",", ".")
 
                     precio = float(preciostr)
 
-                    tab_ventas.setItem(i, 1, QTableWidgetItem(str("{:.2f}".format(precio)) + "€"))
+                    tab_ventas.setItem(i, 2, QTableWidgetItem(str("{:.2f}".format(precio)) + "€"))
 
                     subtotal = precio * self.unidades[i].value()
 
-                    tab_ventas.setItem(i, 3, QTableWidgetItem("{:.2f}".format(subtotal) + "€"))
+                    tab_ventas.setItem(i, 4, QTableWidgetItem("{:.2f}".format(subtotal) + "€"))
 
-                    tab_ventas.item(i, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    tab_ventas.item(i, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    tab_ventas.item(i, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    tab_ventas.item(i, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
                     precio_total += float(subtotal)
 
@@ -390,7 +436,11 @@ class TabFacturacion:
 
                         if servicio is not None:
 
-                            FacturaDAO.guardar_venta_factura(idfact, int(servicio.codigo), unidades)
+                            nuevo_id = FacturaDAO.guardar_venta_factura(idfact, int(servicio.codigo), unidades)
+
+                            if nuevo_id != -1:
+
+                                self.limpiar_facturas()
 
                 events.Eventos.lanzar_aviso("Factura registrada")
                 self.__actualizar_lista_facturas()

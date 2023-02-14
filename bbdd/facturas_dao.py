@@ -11,6 +11,58 @@ from models.venta_servicio import VentaServicio
 class FacturaDAO:
 
     @staticmethod
+    def buscar_facturas_por_id(id_fact: int) -> typing.List[Factura]:
+
+        out = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            query.prepare("select id, dni, matricula, fechafac from facturas where id = :id")
+
+            query.bindValue(":id", id_fact)
+
+            if query.exec():
+
+                while query.next():
+
+                    out.append(FacturaDAO.__parse_factura(query))
+
+        except Exception as error:
+
+            print("Error al buscar facturas por DNI", error)
+
+        return out
+
+    @staticmethod
+    def buscar_facturas_por_dni(dni: str) -> typing.List[Factura]:
+
+        out = []
+
+        try:
+
+            query = QtSql.QSqlQuery()
+
+            dni = "%" + dni + "%"
+
+            query.prepare("select id, dni, matricula, fechafac from facturas where dni like :dni")
+
+            query.bindValue(":dni", dni)
+
+            if query.exec():
+
+                while query.next():
+
+                    out.append(FacturaDAO.__parse_factura(query))
+
+        except Exception as error:
+
+            print("Error al buscar facturas por DNI", error)
+
+        return out
+
+    @staticmethod
     def obtener_factura_por_id(id_fact: int) -> Factura:
 
         try:
@@ -109,7 +161,7 @@ class FacturaDAO:
         return None
 
     @staticmethod
-    def guardar_venta_factura(idfact: int, idserv: int, unidades: int) -> bool:
+    def guardar_venta_factura(idfact: int, idserv: int, unidades: int) -> int:
 
         try:
 
@@ -123,13 +175,13 @@ class FacturaDAO:
 
             if query.exec():
 
-                return True
+                return query.lastInsertId()
 
         except Exception as error:
 
             print("Error al guardar las ventas de la factura", error)
 
-        return False
+        return -1
 
     @staticmethod
     def crear_factura(dni: str, matricula: str) -> int:
