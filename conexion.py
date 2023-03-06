@@ -9,6 +9,10 @@ class Conexion:
 
     @staticmethod
     def conexion():
+        """
+        Inicializa la conexión a la base de datos
+        :return: None
+        """
 
         try:
 
@@ -27,6 +31,11 @@ class Conexion:
 
     @staticmethod
     def buscar_servicios_concepto(concepto: str):
+        """
+        Busca los servicios a partir del concepto
+        :param concepto: un string con el concepto a buscar
+        :return: la lista de servicios
+        """
 
         servicios = []
 
@@ -53,6 +62,11 @@ class Conexion:
 
     @staticmethod
     def modifica_servicio(servicio: Servicio) -> bool:
+        """
+        Modifica un servicio en la base de datos
+        :param servicio: el servicio con los datos a modificar
+        :return: true si se pudo modificar el servicio
+        """
 
         out = False
 
@@ -75,6 +89,11 @@ class Conexion:
 
     @staticmethod
     def borraServicioPorCodigo(codigo: str) -> bool:
+        """
+        Borra un servicio a partir de un código
+        :param codigo: el código del servicio a borrar
+        :return: true si se pudo borrar
+        """
 
         out = False
 
@@ -94,6 +113,11 @@ class Conexion:
 
     @staticmethod
     def guardar_servicio(servicio: Servicio) -> bool:
+        """
+        Guarda un servicio
+        :param servicio: el servicio a registrar en la base de datos
+        :return: true si se pudo guardar
+        """
 
         try:
 
@@ -113,6 +137,10 @@ class Conexion:
 
     @staticmethod
     def cargar_lista_servicios():
+        """
+        Carga todos los servicios de la base de datos
+        :return: la lista de servicios
+        """
 
         servicios = []
 
@@ -136,6 +164,11 @@ class Conexion:
 
     @staticmethod
     def cargar_municipios(provincia: str) -> List[str]:
+        """
+        Carga los municipios a partir de la provincia
+        :param provincia: la provincia de donde se cargan los municipios
+        :return: la lista de strings con los municipios
+        """
 
         out = []
 
@@ -171,6 +204,10 @@ class Conexion:
 
     @staticmethod
     def cargar_provincias() -> List[str]:
+        """
+        Carga las provincias de la base de datos
+        :return: una lista de strings con las provincias disponibles
+        """
 
         out = []
 
@@ -193,6 +230,12 @@ class Conexion:
 
     @staticmethod
     def alta_cli(new_cli: Cliente, new_car: Coche) -> bool:
+        """
+        Da de alta un cliente y un coche
+        :param new_cli: el cliente a registrar
+        :param new_car: el coche a registrar
+        :return: true si se pudo guardar
+        """
 
         creado = False
 
@@ -215,6 +258,11 @@ class Conexion:
 
     @staticmethod
     def existe_dni(dni: str) -> bool:
+        """
+        Comprueba si existe un dni en la base de datos
+        :param dni: el dni a buscar
+        :return: True si existe
+        """
 
         out = False
 
@@ -236,6 +284,11 @@ class Conexion:
 
     @staticmethod
     def one_cli(dni) -> Cliente:
+        """
+        Carga un cliente a partir de su dni
+        :param dni: el dni del cliente
+        :return: el Cliente o None si no lo encuentra
+        """
 
         registro = None
 
@@ -267,6 +320,11 @@ class Conexion:
 
     @staticmethod
     def insertar_cliente(cliente: Cliente) -> bool:
+        """
+        Guarda un cliente en la base de datos
+        :param cliente: el cliente a guardar
+        :return: True si se pudo guardar
+        """
 
         out = True
 
@@ -295,6 +353,11 @@ class Conexion:
 
     @staticmethod
     def insertarCoche(coche: Coche) -> bool:
+        """
+        Inserta un coche en la base de datos
+        :param coche: el coche a guardar
+        :return: true si se pudo guardar
+        """
 
         out = True
 
@@ -322,6 +385,11 @@ class Conexion:
 
     @staticmethod
     def borraCliPorDni(dni: str) -> bool:
+        """
+        Borra un cliente a partir de su dni
+        :param dni: el dni del cliente
+        :return: true si se pudo borrar
+        """
 
         out = True
 
@@ -343,6 +411,11 @@ class Conexion:
 
     @staticmethod
     def borraCochePorMatricula(matricula: str) -> bool:
+        """
+        Borra un coche a partir de su matrícula
+        :param matricula: la matrícula del coche
+        :return: true si se pudo borrar el cliente
+        """
 
         out = True
 
@@ -364,6 +437,10 @@ class Conexion:
 
     @staticmethod
     def cargar_lista_coches():
+        """
+        Carga la lista de todos los coches en la base de datos
+        :return: la lista de coches
+        """
 
         out = []
 
@@ -380,6 +457,10 @@ class Conexion:
 
     @staticmethod
     def cargar_lista_clientes() -> List[Cliente]:
+        """
+        Carga la lista de clientes de la base de datos
+        :return: la lista de clientes
+        """
 
         out = []
 
@@ -402,6 +483,11 @@ class Conexion:
 
     @staticmethod
     def update_cli(cliente: Cliente) -> bool:
+        """
+        Actualiza un cliente en la base de datos
+        :param cliente: el cliente a actualizar en la base de datos
+        :return: true si se pudo actualizar
+        """
 
         out = False
 
@@ -430,6 +516,11 @@ class Conexion:
 
     @staticmethod
     def update_coche(coche: Coche) -> bool:
+        """
+        Actualiza un coche en la base de datos
+        :param coche: el coche a actualizar en la base de datos
+        :return: true si se pudo actualizar
+        """
 
         out = False
 
@@ -456,6 +547,10 @@ class Conexion:
 
     @staticmethod
     def cargar_lista_conceptos() -> List[str]:
+        """
+        Carga la lista de conceptos de la base de datos
+        :return: la lista de conceptos de la base de datos como strings
+        """
 
         out = []
 
@@ -478,6 +573,12 @@ class Conexion:
 
     @staticmethod
     def modifica_cli(cliente: Cliente, coche: Coche) -> bool:
+        """
+        Modifica un cliente y su coche
+        :param cliente: el cliente a modificar
+        :param coche: el coche a modificar
+        :return: true si se pudo modificar
+        """
 
         out = False
 
@@ -505,6 +606,11 @@ class Conexion:
 
     @staticmethod
     def obtener_precio_servicio_por_concepto(concepto: str) -> str:
+        """
+        Obtiene el precio de un servicio a partir de su concepto
+        :param concepto: el concepto del servicio
+        :return: el precio del servicio como string
+        """
 
         try:
 

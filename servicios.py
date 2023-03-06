@@ -6,6 +6,7 @@ from PyQt6 import QtWidgets, QtCore, QtGui
 from models.models import Servicio
 from ventMain import Ui_mainWindow
 
+
 class TabServicios:
 
     def __init__(self, ui: Ui_mainWindow):
@@ -33,6 +34,10 @@ class TabServicios:
         self.cargar_tabla_servicios()
 
     def buscar_servicio(self):
+        """
+        Busca los servicios a partir del texto de búsqueda
+        :return: None
+        """
 
         try:
 
@@ -52,6 +57,10 @@ class TabServicios:
             print("Error al buscar un servicio por concepto", error)
 
     def cargar_tabla_servicios(self):
+        """
+        Carga la tabla de servicios
+        :return: None
+        """
 
         try:
 
@@ -66,6 +75,11 @@ class TabServicios:
             print("Error al cargar la tabla de servicios", error)
 
     def __mostrar_lista_en_tabla(self, lista):
+        """
+        Muestra los servicios en la tabla de servicios
+        :param lista: la lista de servicios a mostrar
+        :return: None
+        """
 
         try:
 
@@ -109,6 +123,10 @@ class TabServicios:
             print("Error al mostrar lista en tabla", error)
 
     def cargar_servicio_desde_tabla(self):
+        """
+        Carga un servicio seleccionado en la tabla de servicios
+        :return: None
+        """
 
         try:
 
@@ -129,6 +147,10 @@ class TabServicios:
             print("Error al cargar un servicio desde la tabla", error)
 
     def modificar_servicio(self):
+        """
+        Modifica un servicio
+        :return: None
+        """
 
         try:
 
@@ -156,6 +178,10 @@ class TabServicios:
             print("Error al modificar un servicio", error)
 
     def eliminar_servicio(self):
+        """
+        Elimina un servicio
+        :return: None
+        """
 
         try:
 
@@ -181,6 +207,10 @@ class TabServicios:
             print("Error al eliminar un servicio", error)
 
     def guardar_servicio(self):
+        """
+        Guarda un sercvicio en la base de datos a partir de los datos de la interfaz
+        :return: None
+        """
 
         try:
 
@@ -220,6 +250,10 @@ class TabServicios:
             print("Error al guardar el servicio", error)
 
     def limpiar_ui_servicio(self):
+        """
+        Limpia la interfaz de servicios
+        :return: None
+        """
 
         try:
 
@@ -232,6 +266,10 @@ class TabServicios:
             print("Error al limpiar la UI de servicios", error)
 
     def cargar_servicio_ui(self) -> Servicio:
+        """
+        Carga un servicio a partir de los datos de la interfaz
+        :return: el servicio cargado o None si no se pudo cargar
+        """
 
         servicio = None
 
@@ -254,6 +292,11 @@ class TabServicios:
         return servicio
 
     def mostrar_servicio_ui(self, servicio: Servicio):
+        """
+        Muestra un servicio en la interfaz
+        :param servicio: el servicio a mostrar
+        :return: None
+        """
 
         try:
 

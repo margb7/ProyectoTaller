@@ -10,12 +10,18 @@ from dialogs.dlgExportarDatos import Ui_dlgExportarDatos
 
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
+    """
+    Diáogo para abrir un fichero
+    """
 
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
 
 
 class DialogSalir(QtWidgets.QDialog):
+    """
+    Diáogo para confirmar la salida de la aplicación
+    """
 
     def __init__(self):
         super(DialogSalir, self).__init__()
@@ -32,6 +38,9 @@ class DialogSalir(QtWidgets.QDialog):
 
 
 class VentCalendario(QtWidgets.QMainWindow):
+    """
+    Ventana para cargar fecha de alta de cliente
+    """
 
     def __init__(self):
         super(VentCalendario, self).__init__()
@@ -54,6 +63,9 @@ class VentCalendario(QtWidgets.QMainWindow):
 
 
 class DialogExportarDatos(QtWidgets.QDialog):
+    """
+    Diálogo para exportar datos
+    """
 
     def __init__(self):
         super(DialogExportarDatos, self).__init__()

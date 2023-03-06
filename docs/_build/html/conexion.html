@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>conexion module &#8212; documentación de ProyectoTaller-Mario_González_Besada - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>documentación de ProyectoTaller-Mario_González_Besada - 1.0</span></a></h1>
+        <h2 class="heading"><span>conexion module</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        <a class="uplink" href="index.html">Contenidos</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-conexion">
+<span id="conexion-module"></span><h1>conexion module<a class="headerlink" href="#module-conexion" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="conexion.Conexion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">conexion.</span></span><span class="sig-name descname"><span class="pre">Conexion</span></span><a class="headerlink" href="#conexion.Conexion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.alta_cli">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alta_cli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_cli</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cliente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_car</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coche</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.alta_cli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Da de alta un cliente y un coche
+:param new_cli: el cliente a registrar
+:param new_car: el coche a registrar
+:return: true si se pudo guardar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.borraCliPorDni">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">borraCliPorDni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.borraCliPorDni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Borra un cliente a partir de su dni
+:param dni: el dni del cliente
+:return: true si se pudo borrar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.borraCochePorMatricula">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">borraCochePorMatricula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matricula</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.borraCochePorMatricula" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Borra un coche a partir de su matrícula
+:param matricula: la matrícula del coche
+:return: true si se pudo borrar el cliente</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.borraServicioPorCodigo">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">borraServicioPorCodigo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">codigo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.borraServicioPorCodigo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Borra un servicio a partir de un código
+:param codigo: el código del servicio a borrar
+:return: true si se pudo borrar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.buscar_servicios_concepto">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buscar_servicios_concepto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concepto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#conexion.Conexion.buscar_servicios_concepto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Busca los servicios a partir del concepto
+:param concepto: un string con el concepto a buscar
+:return: la lista de servicios</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.cargar_lista_clientes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargar_lista_clientes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Cliente</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#conexion.Conexion.cargar_lista_clientes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga la lista de clientes de la base de datos
+:return: la lista de clientes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.cargar_lista_coches">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargar_lista_coches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#conexion.Conexion.cargar_lista_coches" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga la lista de todos los coches en la base de datos
+:return: la lista de coches</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.cargar_lista_conceptos">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargar_lista_conceptos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#conexion.Conexion.cargar_lista_conceptos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga la lista de conceptos de la base de datos
+:return: la lista de conceptos de la base de datos como strings</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.cargar_lista_servicios">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargar_lista_servicios</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#conexion.Conexion.cargar_lista_servicios" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga todos los servicios de la base de datos
+:return: la lista de servicios</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.cargar_municipios">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargar_municipios</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provincia</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#conexion.Conexion.cargar_municipios" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga los municipios a partir de la provincia
+:param provincia: la provincia de donde se cargan los municipios
+:return: la lista de strings con los municipios</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.cargar_provincias">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargar_provincias</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#conexion.Conexion.cargar_provincias" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga las provincias de la base de datos
+:return: una lista de strings con las provincias disponibles</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.conexion">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">conexion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#conexion.Conexion.conexion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicializa la conexión a la base de datos
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.existe_dni">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">existe_dni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.existe_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Comprueba si existe un dni en la base de datos
+:param dni: el dni a buscar
+:return: True si existe</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.guardar_servicio">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">guardar_servicio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">servicio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Servicio</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.guardar_servicio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Guarda un servicio
+:param servicio: el servicio a registrar en la base de datos
+:return: true si se pudo guardar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.insertarCoche">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertarCoche</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coche</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coche</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.insertarCoche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inserta un coche en la base de datos
+:param coche: el coche a guardar
+:return: true si se pudo guardar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.insertar_cliente">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertar_cliente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cliente</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cliente</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.insertar_cliente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Guarda un cliente en la base de datos
+:param cliente: el cliente a guardar
+:return: True si se pudo guardar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.modifica_cli">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modifica_cli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cliente</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cliente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coche</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coche</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.modifica_cli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modifica un cliente y su coche
+:param cliente: el cliente a modificar
+:param coche: el coche a modificar
+:return: true si se pudo modificar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.modifica_servicio">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modifica_servicio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">servicio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Servicio</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.modifica_servicio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modifica un servicio en la base de datos
+:param servicio: el servicio con los datos a modificar
+:return: true si se pudo modificar el servicio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.obtener_precio_servicio_por_concepto">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obtener_precio_servicio_por_concepto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concepto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#conexion.Conexion.obtener_precio_servicio_por_concepto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtiene el precio de un servicio a partir de su concepto
+:param concepto: el concepto del servicio
+:return: el precio del servicio como string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.one_cli">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one_cli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Cliente</span></span></span><a class="headerlink" href="#conexion.Conexion.one_cli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Carga un cliente a partir de su dni
+:param dni: el dni del cliente
+:return: el Cliente o None si no lo encuentra</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.update_cli">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_cli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cliente</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cliente</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.update_cli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualiza un cliente en la base de datos
+:param cliente: el cliente a actualizar en la base de datos
+:return: true si se pudo actualizar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="conexion.Conexion.update_coche">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_coche</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coche</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coche</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#conexion.Conexion.update_coche" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualiza un coche en la base de datos
+:param coche: el coche a actualizar en la base de datos
+:return: true si se pudo actualizar</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        <a class="uplink" href="index.html">Contenidos</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2023, Mario González Besada.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  </body>
+</html>

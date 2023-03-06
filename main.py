@@ -1,6 +1,8 @@
 import sys
-
+import ajustes_ui
+import events
 import conexion
+
 from views import views
 from facturacion import TabFacturacion
 from servicios import TabServicios
@@ -8,8 +10,6 @@ from servicios import TabServicios
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import QMainWindow, QLabel, QMessageBox, QTableWidgetItem, QTableWidget, QApplication
 
-import ajustes_ui
-import events
 from models.informe import Informe
 from models.models import Coche, Cliente
 from ventMain import Ui_mainWindow
@@ -30,7 +30,6 @@ class Main(QMainWindow):
         self.dlgExportarDatos = views.DialogExportarDatos()
 
         # Texto barra de estado
-
         self.lblTiempo = QLabel("")
         self.contador = QtCore.QTimer(self)
 
@@ -84,10 +83,17 @@ class Main(QMainWindow):
         self.tabFacturacion = TabFacturacion(self.ui)
         self.tabServicios = TabServicios(self.ui)
 
+        # Exportar
+        self.dlgExportarDatos.ui.btnExportar.clicked.connect(self.exportar_datos_excel)
+
         # Estilos extra con CSS aplicados a esta ventana
         self._aplicar_estilos()
 
     def _actualizar_tiempo(self):
+        """
+        Actualiza el tiempo de la barra de estado
+        :return: None
+        """
 
         try:
 
@@ -103,6 +109,10 @@ class Main(QMainWindow):
             print("Error al actualizar el tiempo", error)
 
     def _aplicar_estilos(self):
+        """
+        Aplica los estilos de la aplicación
+        :return: None
+        """
 
         try:
 
@@ -123,6 +133,10 @@ class Main(QMainWindow):
             print("Error al aplicar estilos CSS, modo básico", error)
 
     def modificar_cliente(self):
+        """
+        Permite modificar datos del cliente a partir de la interfaz
+        :return: None
+        """
 
         try:
 
@@ -140,6 +154,10 @@ class Main(QMainWindow):
             print("Error al modificar cliente desde UI", error)
 
     def sel_motor(self) -> str:
+        """
+        Obtiene el valor del motor seleccionado en la interfaz
+        :return: un String con el tipo del motor
+        """
 
         motor = ""
 
@@ -169,6 +187,11 @@ class Main(QMainWindow):
 
     def cargar_coche_ui(self) -> Coche:
 
+        """
+        Carga un coche a partir de los datos en la interfaz
+        :return: un Coche
+        """
+
         try:
 
             coche = Coche(matricula=self.ui.txtVehiculo.text(), modelo=self.ui.txtModelo.text(),
@@ -184,6 +207,10 @@ class Main(QMainWindow):
         return coche
 
     def cargar_cliente_ui(self) -> Cliente:
+        """
+        Carga un cliente a partir de la interfaz
+        :return: un Cliente
+        """
 
         try:
 
@@ -217,6 +244,10 @@ class Main(QMainWindow):
         return out
 
     def mostrar_dni_valido(self):
+        """
+        Muestra si el DNI introducido en la interfaz es válido o no
+        :return: None
+        """
 
         try:
 
@@ -236,6 +267,10 @@ class Main(QMainWindow):
             print("Error al mostrar el marcado de validez del DNI", error)
 
     def carga_fecha(self):
+        """
+        Carga una fecha llamando a la ventana del calendario
+        :return: None
+        """
 
         try:
 
@@ -247,6 +282,11 @@ class Main(QMainWindow):
             print("Error al cargar la fecha ", error)
 
     def mostrar_fecha(self, date):
+        """
+        Muestra una fecha en el campo de fecha de alta en la interfaz
+        :param date: un objeto date con la fecha
+        :return: None
+        """
 
         try:
 
@@ -259,7 +299,11 @@ class Main(QMainWindow):
 
             print("Error al mostrar la fecha", error)
 
-    def borrar_cliente(self):
+    def borrar_cliente(self) -> None:
+        """
+        Borra un cliente seleccionado en la interfaz
+        :return: None
+        """
 
         borrado = False
 
@@ -298,6 +342,10 @@ class Main(QMainWindow):
             print("Error al intentar borrar un cliente", error)
 
     def mostrar_municipios(self):
+        """
+        Carga los municipios de una provincia en el combobox de municipios en la interfaz
+        :return: None
+        """
 
         try:
 
@@ -314,6 +362,10 @@ class Main(QMainWindow):
             print("Error al cargar municipios de UI", error)
 
     def mostrar_provincias(self):
+        """
+        Carga las provincias en el combobox de provincias en la interfaz
+        :return: None
+        """
 
         try:
 
@@ -330,6 +382,10 @@ class Main(QMainWindow):
             print("Error al cargar las provincias", error)
 
     def mostrar_coches(self):
+        """
+        Carga los coches de la base de datos y los añade a la tabla de coches registrados en la interfaz
+        :return: None
+        """
 
         try:
 
@@ -382,6 +438,11 @@ class Main(QMainWindow):
             print("Error al mostrar el listado de coches clientes", error)
 
     def mostrar_cliente(self, cliente: Cliente):
+        """
+        Muestra un cliente seleccionado en la interfaz a partir del cliente que se le pasa por parámetro
+        :param cliente: un objeto Cliente con los datos del cliente que se quiere mostrar
+        :return: None
+        """
 
         self.limpiar_ui_cliente()
 
@@ -397,6 +458,10 @@ class Main(QMainWindow):
         self.ui.chkTrans.setChecked('Transferencia' in cliente.pago)
 
     def restaurar_backup(self):
+        """
+        Llama a la interfaz para restaurar una copia de seguridad
+        :return: None
+        """
 
         try:
 
@@ -408,6 +473,11 @@ class Main(QMainWindow):
             print("Error al cargar backup desde UI", error)
 
     def salir(self):
+        """
+        Llama a la interfaz para la confirmación de la salida de la aplicación
+        :return: None
+        """
+
         try:
 
             self.objSalir.show()
@@ -417,6 +487,10 @@ class Main(QMainWindow):
             print("Error al salir ", str(error))
 
     def carga_cliente_desde_tab(self):
+        """
+        Carga un cliente al seleccionarse en la tabla de coches
+        :return: None
+        """
 
         try:
 
@@ -471,10 +545,13 @@ class Main(QMainWindow):
             print("Error al cargar el cliente", error)
 
     def dlg_exportar_datos(self):
+        """
+        Llama al diálogo para exportar datos a excel
+        :return: None
+        """
 
         try:
 
-            self.dlgExportarDatos.ui.btnExportar.clicked.connect(self.exportar_datos_excel)
             self.dlgExportarDatos.show()
 
         except Exception as error:
@@ -482,6 +559,10 @@ class Main(QMainWindow):
             print("Error al lanzar del dialogo para exportar datos", error)
 
     def exportar_datos_excel(self):
+        """
+        Se llama desde el diálogo de exportación de datos para exportar definitivamente los datos seleccionados
+        :return: None
+        """
 
         try:
 
@@ -498,6 +579,10 @@ class Main(QMainWindow):
             print("Error al exportar datos a excel", error)
 
     def importar_desde_excel(self):
+        """
+        Llama a la interfaz para importar datos desde excel
+        :return: None
+        """
 
         try:
 
@@ -509,6 +594,10 @@ class Main(QMainWindow):
             print("Error al importar datos desde excel", error)
 
     def guarda_cliente(self):
+        """
+        Permite guardar un cliente nuevo a partir de los datos de la interfaz
+        :return: None
+        """
 
         try:
 
@@ -541,6 +630,10 @@ class Main(QMainWindow):
             print("Error al guardar el cliente: ", error)
 
     def limpiar_ui(self):
+        """
+        Limpia la interfaz para dejar los valores por defecto del principio
+        :return: None
+        """
 
         try:
 
@@ -561,6 +654,10 @@ class Main(QMainWindow):
             print("Error al limpiar: ", error)
 
     def limpiar_ui_cliente(self):
+        """
+        Limpia la interfaz del apartado de clientes
+        :return: None
+        """
 
         try:
 

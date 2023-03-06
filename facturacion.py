@@ -7,12 +7,12 @@ import views.dialog_seleccionar_cliente
 from bbdd.facturas_dao import FacturaDAO
 from bbdd.servicios_dao import ServicioDAO
 
-from models.factura import Factura
 from models.informe import Informe
 
+from datetime import datetime
 from ventMain import Ui_mainWindow
-from PyQt6 import QtCore, QtSql
-from PyQt6.QtWidgets import QComboBox, QHeaderView, QTableWidget, QLineEdit, QPushButton, QTableWidgetItem, QSpinBox
+from PyQt6 import QtCore
+from PyQt6.QtWidgets import QComboBox, QHeaderView, QTableWidget, QPushButton, QTableWidgetItem, QSpinBox, QDoubleSpinBox
 
 
 class TabFacturacion:
@@ -52,12 +52,17 @@ class TabFacturacion:
         self.dlg_seleccionar_cliente.ui.btnAceptar.clicked.connect(self.seleccionar_cliente)
         self.ui.btnLimpiarFact.clicked.connect(self.limpiar_facturas)
         self.ui.btnProcesarFact.clicked.connect(self.crear_factura)
-        self.ui.btnLimpiarBusquedaFactura.clicked.connect(self.limpiar_busqueda_factura)
+
+        self.factura = None
 
         self.cargar_linea_venta(1)
         self.__actualizar_lista_facturas()
 
     def __cargar_factura_desde_tab(self):
+        """
+        Carga una factura desde la tabla de facturas
+        :return: None
+        """
 
         try:
 
@@ -95,18 +100,11 @@ class TabFacturacion:
 
             print("Error al cargar la factura desde la tabla de facturas", error)
 
-    def limpiar_busqueda_factura(self):
-
-        try:
-
-            self.ui.txtBuscaFactura.setText("")
-            self.__actualizar_lista_facturas()
-
-        except Exception as error:
-
-            print("Error al limpir la busqueda de factura", error)
-
     def __actualizar_lista_facturas(self):
+        """
+        Actualiza la lista de facturas cargando a partir del texto de búsqueda en la interfaz
+        :return: None
+        """
 
         try:
 
@@ -150,16 +148,18 @@ class TabFacturacion:
             print("Error al actualizar la lista de facturas", error)
 
     def imprimir_factura(self):
+        """
+        Imprime la factura seleccionada. Si no hay una factura seleccionada lanza un aviso.
+        :return: None
+        """
 
         try:
 
             num_factura = self.ui.txtNumFactura.text()
 
-            factura: Factura
+            if num_factura == "" or self.factura is None:
 
-            if num_factura == "":
-
-                events.Eventos.lanzar_error("Selecciona primero una factura")
+                events.Eventos.lanzar_error("Selecciona primero un cliente / coche para aplicar la factura")
                 return
 
             conceptos_str = []
@@ -177,17 +177,23 @@ class TabFacturacion:
                     precio_unidad = servicio.precio_unidad
                     unidades = self.unidades[i].value()
 
+                    unidades = str(unidades).replace(",", ".")
+
                     conceptos_str.append(nuevo_concepto)
                     lista_precios.append(precio_unidad)
-                    lista_unidades.append(int(unidades))
+                    lista_unidades.append(float(unidades))
 
-            Informe.generar_informe_factura(factura, conceptos_str, lista_unidades, lista_precios)
+            Informe.generar_informe_factura(self.factura, conceptos_str, lista_unidades, lista_precios)
 
         except Exception as error:
 
             print("Error al imprimir factura", error)
 
     def seleccionar_cliente(self):
+        """
+        Selecciona un cliente de entre los clientes registrados en la base de datos
+        :return: None
+        """
 
         try:
 
@@ -205,6 +211,11 @@ class TabFacturacion:
             print("Error al seleccionar el cliente", error)
 
     def cargar_linea_venta(self, index):
+        """
+        Carga una linea de ventas
+        :param index: el índice que representa
+        :return: None
+        """
 
         try:
 
@@ -220,6 +231,14 @@ class TabFacturacion:
             print("Error al cargar la línea de ventas", error)
 
     def __crear_row_venta(self, i, concepto: str = "", num_unidades: int = 1, precio_unidad: float = -1):
+        """
+        Crea una línea de venta con el combobox, el spinner y sus campos
+        :param i: el índice
+        :param concepto: el concepto que representa
+        :param num_unidades: el número de unidades
+        :param precio_unidad: el precio de unidad
+        :return: None
+        """
 
         try:
 
@@ -228,7 +247,7 @@ class TabFacturacion:
             tab_ventas = self.ui.tabVentas
 
             cmb_servicio = QComboBox()
-            spn_unidades = QSpinBox()
+            spn_unidades = QDoubleSpinBox()
 
             spn_unidades.setValue(num_unidades)
             spn_unidades.setMinimum(1)
@@ -264,6 +283,11 @@ class TabFacturacion:
             print("Error al crear una nueva linea de venta", error)
 
     def __borrar_linea(self, value: int):
+        """
+        Borra una línea de ventas a partir del índice
+        :param value: un int con el índice
+        :return: None
+        """
 
         try:
 
@@ -282,6 +306,10 @@ class TabFacturacion:
             print("Error al borrar una línea de venta", error)
 
     def ampliar_linea_ventas(self):
+        """
+        Añade una nueva línea de ventas cuando se selecciona un concepto
+        :return: None
+        """
 
         try:
 
@@ -297,6 +325,10 @@ class TabFacturacion:
             print("Error al ampliar la linea de ventas", error)
 
     def __cargar_conceptos(self):
+        """
+        Carga todos los conceptos de la base de datos
+        :return: None
+        """
 
         try:
 
@@ -316,6 +348,10 @@ class TabFacturacion:
             print("Error al cargar la lista de conceptos", error)
 
     def __recargar_precios_servicios(self):
+        """
+        Recarga los precios de los servicios y calcula los subtotales
+        :return: None
+        """
 
         try:
 
@@ -390,6 +426,10 @@ class TabFacturacion:
             print("Error al cargar el precio del servicio", error)
 
     def limpiar_facturas(self):
+        """
+        Limipia la interfaz de datos de factura
+        :return: None
+        """
 
         try:
 
@@ -410,6 +450,10 @@ class TabFacturacion:
             print("Error al limpiar la factura", error)
 
     def crear_factura(self):
+        """
+        Crea una nueva factura a partir de los datos seleccionados
+        :return: None
+        """
 
         try:
 
@@ -421,13 +465,19 @@ class TabFacturacion:
                 events.Eventos.lanzar_error("Selecciona una factura primero")
                 return
 
-            idfact = FacturaDAO.crear_factura(dni, matricula)
+            dt = datetime.today()
+
+            fecha = dt.strftime('%d/%m/%Y - %H:%M:%S')
+
+            idfact = FacturaDAO.crear_factura(dni, matricula, fecha)
 
             if idfact != -1:
 
                 for i, conc in enumerate(self.conceptos):
 
                     text = conc.currentText()
+
+                    print(text)
 
                     if text != "":
 
@@ -438,11 +488,9 @@ class TabFacturacion:
 
                             nuevo_id = FacturaDAO.guardar_venta_factura(idfact, int(servicio.codigo), unidades)
 
-                            if nuevo_id != -1:
-
-                                self.limpiar_facturas()
-
                 events.Eventos.lanzar_aviso("Factura registrada")
+
+                self.limpiar_facturas()
                 self.__actualizar_lista_facturas()
 
             else:

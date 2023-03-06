@@ -21,6 +21,11 @@ class Eventos:
 
     @staticmethod
     def lanzar_error(mensaje_error: str):
+        """
+        Lanza un diálogo con un mensaje de error
+        :param mensaje_error: un String con el mensaje de error
+        :return: None
+        """
 
         try:
 
@@ -37,6 +42,11 @@ class Eventos:
 
     @staticmethod
     def lanzar_aviso(mensaje_aviso: str):
+        """
+        Lanza un diálogo con un mensaje de aviso
+        :param mensaje_aviso: un String con el mensaje de aviso
+        :return: None
+        """
 
         try:
 
@@ -52,6 +62,13 @@ class Eventos:
 
     @staticmethod
     def exportar_datos(exportar_clientes: bool, exportar_coches: bool, exportar_productos: bool):
+        """
+        Exporta los datos a un excel
+        :param exportar_clientes: bool si se deben exportar clientes
+        :param exportar_coches: bool si se deben exportar coches
+        :param exportar_productos: bool si se deben exportar productos
+        :return: None
+        """
 
         try:
 
@@ -150,6 +167,10 @@ class Eventos:
 
     @staticmethod
     def crea_backup():
+        """
+        Crea una copia de seguridad de la base de datos
+        :return: None
+        """
 
         try:
 
@@ -177,6 +198,10 @@ class Eventos:
 
     @staticmethod
     def restaurar_backup():
+        """
+        Restaura la base de datos a partir de una copia de seguridad
+        :return: None
+        """
 
         try:
 
@@ -202,6 +227,10 @@ class Eventos:
 
     @staticmethod
     def importar_datos_excel():
+        """
+        Importa datos a partir de un archivo excel
+        :return: None
+        """
 
         try:
 
@@ -239,6 +268,11 @@ class Eventos:
 
     @staticmethod
     def importar_hoja_productos(hoja: xlrd.sheet.Sheet) -> bool:
+        """
+        Importa una hoja de productos
+        :param hoja: la hoja para importar
+        :return: true si se pudo importar
+        """
 
         out = False
 
@@ -273,6 +307,11 @@ class Eventos:
 
     @staticmethod
     def importar_hoja_clientes(hoja: xlrd.sheet.Sheet) -> bool:
+        """
+        Importa una hoja de clientes
+        :param hoja: la hoja para importar
+        :return: true si se pudo importar
+        """
 
         out = False
 
@@ -308,6 +347,11 @@ class Eventos:
 
     @staticmethod
     def importar_hoja_coches(hoja: xlrd.sheet.Sheet):
+        """
+        Importa una hoja de coches
+        :param hoja: la hoja para importar
+        :return: true si se pudo importar
+        """
 
         try:
 

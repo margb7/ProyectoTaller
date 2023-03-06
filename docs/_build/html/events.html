@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>events module &#8212; documentación de ProyectoTaller-Mario_González_Besada - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>documentación de ProyectoTaller-Mario_González_Besada - 1.0</span></a></h1>
+        <h2 class="heading"><span>events module</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        <a class="uplink" href="index.html">Contenidos</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-events">
+<span id="events-module"></span><h1>events module<a class="headerlink" href="#module-events" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Fichero de eventos</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="events.Eventos">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">events.</span></span><span class="sig-name descname"><span class="pre">Eventos</span></span><a class="headerlink" href="#events.Eventos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.crea_backup">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">crea_backup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.crea_backup" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Crea una copia de seguridad de la base de datos
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.exportar_datos">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exportar_datos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exportar_clientes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exportar_coches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exportar_productos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.exportar_datos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Exporta los datos a un excel
+:param exportar_clientes: bool si se deben exportar clientes
+:param exportar_coches: bool si se deben exportar coches
+:param exportar_productos: bool si se deben exportar productos
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.importar_datos_excel">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">importar_datos_excel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.importar_datos_excel" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Importa datos a partir de un archivo excel
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.importar_hoja_clientes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">importar_hoja_clientes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hoja</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sheet</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#events.Eventos.importar_hoja_clientes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Importa una hoja de clientes
+:param hoja: la hoja para importar
+:return: true si se pudo importar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.importar_hoja_coches">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">importar_hoja_coches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hoja</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.importar_hoja_coches" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Importa una hoja de coches
+:param hoja: la hoja para importar
+:return: true si se pudo importar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.importar_hoja_productos">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">importar_hoja_productos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hoja</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sheet</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#events.Eventos.importar_hoja_productos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Importa una hoja de productos
+:param hoja: la hoja para importar
+:return: true si se pudo importar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.lanzar_aviso">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lanzar_aviso</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensaje_aviso</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.lanzar_aviso" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lanza un diálogo con un mensaje de aviso
+:param mensaje_aviso: un String con el mensaje de aviso
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.lanzar_error">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lanzar_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensaje_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.lanzar_error" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lanza un diálogo con un mensaje de error
+:param mensaje_error: un String con el mensaje de error
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="events.Eventos.restaurar_backup">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">restaurar_backup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#events.Eventos.restaurar_backup" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Restaura la base de datos a partir de una copia de seguridad
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        <a class="uplink" href="index.html">Contenidos</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2023, Mario González Besada.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  </body>
+</html>

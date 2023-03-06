@@ -6,6 +6,11 @@ class ServicioDAO:
 
     @staticmethod
     def cargar_servicio_por_concepto(concepto: str) -> Servicio:
+        """
+        Carga un servicio a partir de un concepto
+        :param concepto: el concepto
+        :return: el servicio o None si no se encuentra
+        """
 
         try:
 
@@ -28,6 +33,11 @@ class ServicioDAO:
 
     @staticmethod
     def cargar_servicio_por_id(idserv: int) -> Servicio:
+        """
+        Carga un servicio a partir de su id
+        :idserv: el id
+        :return: el servicio o None si no se encuentra
+        """
 
         try:
 

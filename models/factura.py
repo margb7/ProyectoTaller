@@ -7,4 +7,3 @@ class Factura:
         self.dni = dni
         self.matricula = matricula
         self.fecha_factura = fecha_factura
-

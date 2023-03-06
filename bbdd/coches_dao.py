@@ -7,6 +7,11 @@ class CochesDAO:
 
     @staticmethod
     def buscarPorDni(dnicli: str) -> typing.List[Coche]:
+        """
+        Buscar coches por DNI
+        :param dnicli: el dni del cliente
+        :return: los coches registrados para el dni
+        """
 
         out = []
 
