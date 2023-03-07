@@ -2139,6 +2139,7 @@ border: 1px solid black;</string>
      <string>Informes</string>
     </property>
     <addaction name="actionInformes_Clientes"/>
+    <addaction name="actionInforme_Coches"/>
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
     <property name="title">
@@ -2221,6 +2222,11 @@ border: 1px solid black;</string>
   <action name="actionInformes_Clientes">
    <property name="text">
     <string>Informes Clientes</string>
+   </property>
+  </action>
+  <action name="actionInforme_Coches">
+   <property name="text">
+    <string>Informe Coches</string>
    </property>
   </action>
  </widget>

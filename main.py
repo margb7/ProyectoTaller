@@ -53,6 +53,7 @@ class Main(QMainWindow):
         self.ui.actionImportar_Datos.triggered.connect(self.importar_desde_excel)
 
         self.ui.actionInformes_Clientes.triggered.connect(Informe.generar_informe_clientes)
+        self.ui.actionInforme_Coches.triggered.connect(Informe.generar_informe_vehiculos)
 
         self.ui.txtDNI.editingFinished.connect(self.mostrar_dni_valido)
 

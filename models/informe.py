@@ -7,7 +7,11 @@ from reportlab.pdfgen import canvas
 from datetime import datetime
 from .factura import Factura
 
-import ajustes_ui
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.units import inch
+from reportlab.platypus import Table, TableStyle
+
 import conexion
 
 
@@ -25,49 +29,53 @@ class Informe:
 
         try:
 
-            report = canvas.Canvas('informes/listadoClientes.pdf')
-            report.setTitle("Informe de Clientes")
-
-            Informe.__generar_titulo_pagina(report, "Listado de clientes")
-            Informe.__generar_pie_informe(report, "LISTADO CLIENTES")
-
-            Informe.__colocar_label_clientes(report)
-
             listado_clientes = conexion.Conexion.cargar_lista_clientes()
 
-            distancia_x = [60, 120, 270, 370, 460]
-            items = ["DNI", "NOMBRE", "DIRECCIÓN", "PROVINCIA", "MUNICIPIO"]
+            # Crear la lista de datos
+            data = [
+                ['DNI', 'Nombre', 'Dirección', 'Provincia', 'Municipio'],
+            ]
 
-            i = 0
+            for cliente in listado_clientes:
 
-            i = 50
-            j = 675
+                str_dni = "*" * 4 + cliente.dni[4:]
 
-            for cli in listado_clientes:
+                data.append([str_dni, cliente.nombre, cliente.direccion, cliente.provincia, cliente.municipio])
 
-                if j <= 80:
+            # Crear el documento PDF y el objeto canvas
+            pdf = canvas.Canvas('informes/listadoClientes.pdf', pagesize=A4)
+            pdf.setTitle("Informe de Clientes")
 
-                    report.drawString(460, 90, "Página siguiente ...")
-                    report.showPage()
+            Informe.__generar_titulo_pagina(pdf, "Listado de clientes")
+            Informe.__generar_pie_informe(pdf, "LISTADO CLIENTES")
 
-                    Informe.__generar_titulo_pagina(report, "Listado de clientes")
-                    Informe.__generar_pie_informe(report, "LISTADO CLIENTES")
-                    Informe.__colocar_label_clientes(report)
+            # Crear la tabla y darle formato
+            table_width = A4[0] * 0.95
+            table_left_margin = (A4[0] - table_width) / 2
+            table = Table(data, colWidths=[table_width / 5] * 5)
+            table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 14),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -1), colors.whitesmoke),
+                ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+                ('ALIGN', (0, 1), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+                ('FONTSIZE', (0, 1), (-1, -1), 12),
+                ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
+            ]))
 
-                    j = 675
-                    i = 50
+            # Obtener la altura total de la tabla
+            table_height = len(data) * 30  # 30 es la altura predeterminada de cada fila
 
-                report.setFont("Helvetica", size=7)
-                report.drawString(i, j, cli.dni)
-                report.drawString(i, j, cli.nombre)
-
-                report.drawString(i + 225, j, cli.direccion)
-                report.drawString(i + 330, j, cli.provincia)
-                report.drawString(i + 425, j, cli.municipio)
-
-                j = j - 25
-
-            report.save()
+            # Añadir la tabla al documento PDF y cerrarlo
+            table.wrapOn(pdf, 0, 0)
+            table.drawOn(pdf, table_left_margin,
+                         10.05 * inch - table_height)  # Agregar 0.5 pulgadas a la altura del encabezado
+            pdf.save()
 
             root_path = os.path.join(".", "informes")
             root_path += os.sep
@@ -89,27 +97,6 @@ class Informe:
             print("Error informes de estado de clientes", error)
 
     @staticmethod
-    def __colocar_label_clientes(page: canvas.Canvas):
-        """
-        Coloca el header de clientes en un documento
-        :param page: la página donde colocarlo
-        :return: None
-        """
-
-        items = ["DNI", "NOMBRE", "DIRECCIÓN", "PROVINCIA", "MUNICIPIO"]
-        distancia_x = [60, 120, 270, 370, 460]
-
-        page.setFont("Helvetica-Bold", 10)
-        i = 0
-
-        for item in items:
-            page.drawString(distancia_x[i], 700, item)
-
-            i += 1
-
-        page.line(50, 690, 525, 690)
-
-    @staticmethod
     def generar_informe_vehiculos() -> None:
         """
         Genera un informe con los vehículos
@@ -118,14 +105,53 @@ class Informe:
 
         try:
 
-            report = canvas.Canvas('informes/listadoVehiculos.pdf')
-            report.setTitle("Informe de Clientes")
+            # Crear la lista de datos
 
-            Informe.__generar_titulo_pagina(report, "Vehículos")
+            data = [
+                ['DNI', 'Matrícula', 'Marca', 'Modelo', 'Motor'],
+            ]
 
-            Informe.__generar_pie_informe(report, "Vehículos")
+            lista_vehiculos = conexion.Conexion.cargar_lista_coches()
 
-            report.save()
+            for v in lista_vehiculos:
+
+                data.append([v.dnicli, v.matricula, v.marca, v.modelo, v.motor])
+
+            # Crear el documento PDF y el objeto canvas
+            pdf = canvas.Canvas('informes/listadoVehiculos.pdf')
+            pdf.setTitle("Listado de Vehículos")
+
+            Informe.__generar_titulo_pagina(pdf, "Vehículos")
+
+            # Crear la tabla y darle formato
+            table_width = A4[0] * 0.8
+            table_left_margin = (A4[0] - table_width) / 2 - 10
+            table = Table(data, colWidths=[table_width / 5] * 5)
+            table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 14),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -1), colors.whitesmoke),
+                ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+                ('ALIGN', (0, 1), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+                ('FONTSIZE', (0, 1), (-1, -1), 12),
+                ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
+            ]))
+
+            # Obtener la altura total de la tabla
+            table_height = len(data) * 30  # 30 es la altura predeterminada de cada fila
+
+            # Añadir la tabla al documento PDF y cerrarlo
+            table.wrapOn(pdf, 0, 0)
+            table.drawOn(pdf, table_left_margin, 10.2 * inch - table_height)
+
+            Informe.__generar_pie_informe(pdf, "Vehículos")
+
+            pdf.save()
 
             root_path = os.path.join(".", "informes")
             root_path += os.sep
@@ -144,10 +170,11 @@ class Informe:
 
         except Exception as error:
 
-            print("Error informes de estado de vehículos", error)
+            print("Error al generar el informe de vehículos", error)
 
     @staticmethod
-    def generar_informe_factura(factura: Factura, conceptos: typing.List[str], unidades: typing.List[float], precios: typing.List[str]):
+    def generar_informe_factura(factura: Factura, conceptos: typing.List[str], unidades: typing.List[float],
+                                precios: typing.List[str]):
         """
         Genera un informe de una factura
         :param factura: la factura para crear el informe
@@ -213,8 +240,10 @@ class Informe:
 
             print("Error al generar el informe de la factura", error)
 
+
     @staticmethod
-    def __mostrar_productos(page: canvas.Canvas, conceptos: typing.List[str], unidades: typing.List[float], precios: typing.List[str]):
+    def __mostrar_productos(page: canvas.Canvas, conceptos: typing.List[str], unidades: typing.List[float],
+                            precios: typing.List[str]):
         """
         Coloca la lista de productos en un documento
         :param page: el documento donde colocar los productos
@@ -238,7 +267,6 @@ class Informe:
             pos_y -= diff
 
             for i in range(numeros):
-
                 page.drawString(distancia_x[0], pos_y, str(conceptos[i]))
                 page.drawString(distancia_x[1], pos_y, str(precios[i]))
                 page.drawString(distancia_x[2], pos_y, str(unidades[i]))
@@ -258,6 +286,7 @@ class Informe:
         except Exception as error:
 
             print("Error al guardar los conceptos en la factura", error)
+
 
     @staticmethod
     def __cabecera_servicios(page: canvas.Canvas, distancias, y):
@@ -283,6 +312,7 @@ class Informe:
             print("Error al crear la cabecera de servicios", error)
 
         page.setFont("Helvetica", size=8)
+
 
     @staticmethod
     def __generar_titulo_pagina(page: canvas.Canvas, titulo: str):
@@ -322,6 +352,7 @@ class Informe:
         except Exception as error:
 
             print("Error al generar el título de la página", error)
+
 
     @staticmethod
     def __generar_pie_informe(page: canvas.Canvas, titulo: str) -> None:

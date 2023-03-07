@@ -881,6 +881,8 @@ class Ui_mainWindow(object):
         self.actionImportar_Datos.setObjectName("actionImportar_Datos")
         self.actionInformes_Clientes = QtGui.QAction(mainWindow)
         self.actionInformes_Clientes.setObjectName("actionInformes_Clientes")
+        self.actionInforme_Coches = QtGui.QAction(mainWindow)
+        self.actionInforme_Coches.setObjectName("actionInforme_Coches")
         self.menuArchivo.addAction(self.actionSalir)
         self.menuHerramientas.addAction(self.actionGuardar_Copia_Seguridad)
         self.menuHerramientas.addAction(self.actionRestaurar_Copia_Seguridad)
@@ -888,6 +890,7 @@ class Ui_mainWindow(object):
         self.menuHerramientas.addAction(self.actionExportar_Datos)
         self.menuHerramientas.addAction(self.actionImportar_Datos)
         self.menuInformes.addAction(self.actionInformes_Clientes)
+        self.menuInformes.addAction(self.actionInforme_Coches)
         self.menubar.addAction(self.menuArchivo.menuAction())
         self.menubar.addAction(self.menuHerramientas.menuAction())
         self.menubar.addAction(self.menuInformes.menuAction())
@@ -1037,6 +1040,7 @@ class Ui_mainWindow(object):
         self.actionExportar_Datos.setShortcut(_translate("mainWindow", "Alt+E"))
         self.actionImportar_Datos.setText(_translate("mainWindow", "Importar Datos"))
         self.actionInformes_Clientes.setText(_translate("mainWindow", "Informes Clientes"))
+        self.actionInforme_Coches.setText(_translate("mainWindow", "Informe Coches"))
 
 
 if __name__ == "__main__":
